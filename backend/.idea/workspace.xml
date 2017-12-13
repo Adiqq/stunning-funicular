@@ -4,7 +4,11 @@
     <list default="true" id="9cf98830-6435-4c25-b4a8-3f647e3e1242" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../ui/package.json" afterPath="$PROJECT_DIR$/../ui/package.json" />
+      <change beforePath="$PROJECT_DIR$/../ui/public/index.html" afterPath="$PROJECT_DIR$/../ui/public/index.html" />
+      <change beforePath="$PROJECT_DIR$/../ui/public/manifest.json" afterPath="$PROJECT_DIR$/../ui/public/manifest.json" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/App.css" afterPath="$PROJECT_DIR$/../ui/src/App.css" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/App.js" afterPath="$PROJECT_DIR$/../ui/src/App.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/registerServiceWorker.js" afterPath="$PROJECT_DIR$/../ui/src/registerServiceWorker.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -160,12 +164,12 @@
       <workItem from="1513120312111" duration="560000" />
       <workItem from="1513120904251" duration="39000" />
       <workItem from="1513120970349" duration="365000" />
-      <workItem from="1513181558922" duration="367000" />
+      <workItem from="1513181558922" duration="503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1331000" />
+    <option name="totallyTimeSpent" value="1467000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="20" width="1370" height="739" extended-state="6" />
