@@ -10,6 +10,9 @@ class MainMenu extends Component {
           <li>
             <Link to="/">Mieszkania</Link>
           </li>
+          <li>
+            <Link to="/picture">Test zdjęć</Link>
+          </li>
         </ul>
       </div>
     );

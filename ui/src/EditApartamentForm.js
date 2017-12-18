@@ -1,48 +1,95 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 import './EditApartamentForm.css';
+import { post } from 'axios/index';
 
-class EditApartamentForm extends Component {
-  render() {
-    return (
-      <div className="wrapper">
-        <h3>Dodaj mieszkanie</h3>
+export const EditApartamentForm = props => {
+  const { handleSubmit } = props;
+  const append = (form, fieldName, field) => {
+    if (typeof field !== 'undefined') {
+      form.append(fieldName, field);
+    }
+  };
+  const onFormSubmit = data => {
+    let formData = new FormData();
+    console.log(data);
+    append(formData, 'city', data.city);
+    append(formData, 'street', data.street);
+    append(formData, 'pictures', data.pictures[0]);
+    append(formData, 'numberOfRooms', data.numberOfRooms);
+    append(formData, 'roomArea', data.roomArea);
+    append(formData, 'floor', data.floor);
+    append(formData, 'hasBalcony', data.hasBalcony || false);
+    append(formData, 'description', data.description);
 
-        <div>
-          <form>
-            <label htmlFor="fname">Miasto</label>
-            <input type="text" placeholder="Miasto" />
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    };
+    const url = 'http://localhost:3001/flats/';
+    post(url, formData, config)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+  return (
+    <div className="wrapper">
+      <h3>Dodaj mieszkanie</h3>
 
-            <label htmlFor="lname">Ulica</label>
-            <input type="text" placeholder="Ulica" />
+      <div>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+          <label htmlFor="city">Miasto</label>
+          <Field
+            name="city"
+            component="input"
+            type="text"
+            placeholder="Miasto"
+          />
 
-            <label htmlFor="lname">Zdjęcie</label>
-            <input type="file" name="pic" accept="image/*" />
+          <label htmlFor="street">Ulica</label>
+          <Field
+            name="street"
+            component="input"
+            type="text"
+            placeholder="Ulica"
+          />
 
-            <label htmlFor="lname">Liczba pokoi</label>
-            <input type="number" />
+          <label htmlFor="pictures">Zdjęcie</label>
+          <Field name="pictures" component="input" type="file" />
 
-            <label htmlFor="lname">Powierzchnia mieszkania</label>
-            <input type="number" />
+          <label htmlFor="numberOfRooms">Liczba pokoi</label>
+          <Field name="numberOfRooms" component="input" type="number" />
 
-            <label htmlFor="country">Piętro</label>
-            <select id="country" name="country">
-              <option value="australia">Parter</option>
-              <option value="canada">1</option>
-              <option value="usa">2</option>
-            </select>
+          <label htmlFor="roomArea">Powierzchnia mieszkania</label>
+          <Field name="roomArea" component="input" type="number" />
 
-            <label htmlFor="lname">Posiada balkon</label>
-            <input type="checkbox" />
+          <Field name="floor" component="select">
+            <option />
+            <option value="zero">Parter</option>
+            <option value="first">1</option>
+            <option value="second">2</option>
+          </Field>
 
-            <label htmlFor="lname">Krótki opis tekstowy</label>
-            <textarea />
+          <label htmlFor="hasBalcony">Posiada balkon</label>
+          <Field
+            name="hasBalcony"
+            id="hasBalcony"
+            component="input"
+            type="checkbox"
+          />
 
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
+          <label htmlFor="description">Krótki opis tekstowy</label>
+          <Field name="description" component="input" type="textarea" />
+
+          <input type="submit" value="Submit" />
+        </form>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default EditApartamentForm;
+export default reduxForm({
+  form: 'fileUpload'
+})(EditApartamentForm);

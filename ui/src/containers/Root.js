@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import EditApartament from '../EditApartament';
 import Content from '../Content';
 import MainMenu from '../MainMenu';
+import ImageUploadTest from './ImageUploadTest';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -12,6 +13,7 @@ const Root = ({ store }) => (
       <MainMenu />
       <Route exact={true} path="/" component={Content} />
       <Route path="/apartament/:id?" component={EditApartament} />
+      <Route path="/picture" component={ImageUploadTest} />
     </div>
   </Provider>
 );

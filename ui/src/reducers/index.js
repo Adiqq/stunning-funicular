@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 function counter(state = 0, action) {
   switch (action.type) {
@@ -12,7 +13,8 @@ function counter(state = 0, action) {
 }
 
 const rootReducer = combineReducers({
-  counter
+  counter,
+  form: formReducer
 });
 
 export default rootReducer;
