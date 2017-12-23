@@ -21,6 +21,7 @@ export const EditApartamentForm = props => {
     append(formData, 'floor', data.floor);
     append(formData, 'hasBalcony', data.hasBalcony || false);
     append(formData, 'description', data.description);
+    append(formData, 'price', data.price);
 
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
@@ -82,6 +83,9 @@ export const EditApartamentForm = props => {
 
           <label htmlFor="description">Krótki opis tekstowy</label>
           <Field name="description" component="input" type="textarea" />
+
+          <label htmlFor="price">Cena</label>
+          <Field name="price" component="input" type="number" />
 
           <input type="submit" value="Submit" />
         </form>

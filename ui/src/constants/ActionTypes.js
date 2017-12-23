@@ -1,0 +1,1 @@
+export const RECEIVE_FLATS = 'RECEIVE_FLATS';

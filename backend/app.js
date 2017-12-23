@@ -13,6 +13,15 @@ const flats = require('./routes/flats');
 const app = express();
 
 const db = new sqlite3.Database('db/db.sqlite3');
+
+const passport = require('passport');
+const Strategy = require('passport-http').BasicStrategy;
+
+const bcrypt = require('bcrypt');
+
+const printError = (err) => {
+    if (err) console.error(err);
+};
 db.run(`
 CREATE TABLE IF NOT EXISTS Flats(
 Id TEXT PRIMARY KEY,
@@ -23,17 +32,69 @@ NumberOfRooms INTEGER NOT NULL,
 RoomArea INTEGER NOT NULL,
 Floor TEXT NOT NULL,
 HasBalcony INTEGER NOT NULL,
-Description TEXT NOT NULL
-)
-`);
+Description TEXT NOT NULL,
+Price INTEGER NOT NULL
+);
+`, [], printError);
 db.run(`
 CREATE TABLE IF NOT EXISTS Pictures(
 Id TEXT PRIMARY KEY,
 FlatId TEXT NOT NULL,
 Filename TEXT NOT NULL,
 Filetype TEXT NOT NULL
-)
-`);
+);
+`, [], printError);
+db.run(`
+CREATE TABLE IF NOT EXISTS Roles(
+Name TEXT PRIMARY KEY
+);
+`, [], (err) => {
+    printError(err);
+    db.run(`
+INSERT OR IGNORE INTO Roles(Name)
+VALUES('User');
+`, [], printError);
+    db.run(`
+INSERT OR IGNORE INTO Roles(Name)
+VALUES('Administrator');
+`, [], printError);
+    db.run(`
+CREATE TABLE IF NOT EXISTS Users(
+Id TEXT PRIMARY KEY,
+PhoneNumber TEXT NOT NULL,
+Hash TEXT NOT NULL,
+Role TEXT NOT NULL,
+FOREIGN KEY(Role) REFERENCES Roles(Name)
+);
+`, [], printError);
+});
+
+passport.use(new Strategy(
+    (username, password, cb) => {
+        db.get(`
+            SELECT Id FROM Users WHERE Id = $id
+            `, {
+                $id: username
+            },
+            (err, row) => {
+                if (err) { return cb(err); }
+                if (!row) { return cb(null, false); }
+                bcrypt.compare(password, row.Hash, function(err, res) {
+                    if(res){
+                        return cb(null, row);
+                    } else{
+                        return cb(null, false);
+                    }
+                });
+            }
+        )
+    }));        // db.users.findByUsername(username, function(err, user) {
+        //     if (err) { return cb(err); }
+        //     if (!user) { return cb(null, false); }
+        //     if (user.password != password) { return cb(null, false); }
+        //     return cb(null, user);
+        // });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -42,12 +103,12 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -58,21 +119,21 @@ app.use('/users', users);
 app.use('/flats', flats);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     const err = new Error('Not Found');
     err.status = 404;
-  next(err);
+    next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
