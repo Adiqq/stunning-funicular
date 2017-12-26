@@ -3,22 +3,28 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlatItem from '../components/FlatItem';
 import { getFlats } from '../reducers/flats';
+import { Link } from 'react-router-dom';
 
 const FlatContainer = ({ flats }) => (
-  <table>
-    <thead>
-      <tr>
-        <th>Zdjęcie</th>
-        <th>Miasto</th>
-        <th>Liczba pokoi</th>
-        <th>Powierzchnia</th>
-        <th>Piętro</th>
-        <th>Posiada balkon</th>
-        <th>Cena</th>
-      </tr>
-    </thead>
-    <tbody>{flats.map(flat => <FlatItem key={flat.Id} flat={flat} />)}</tbody>
-  </table>
+  <div>
+    <Link to={'apartament'}>
+      <button>Dodaj ofertę</button>
+    </Link>
+    <table>
+      <thead>
+        <tr>
+          <th>Zdjęcie</th>
+          <th>Miasto</th>
+          <th>Liczba pokoi</th>
+          <th>Powierzchnia</th>
+          <th>Piętro</th>
+          <th>Posiada balkon</th>
+          <th>Cena</th>
+        </tr>
+      </thead>
+      <tbody>{flats.map(flat => <FlatItem key={flat.Id} flat={flat} />)}</tbody>
+    </table>
+  </div>
 );
 
 FlatContainer.propTypes = {

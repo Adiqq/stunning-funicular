@@ -18,7 +18,7 @@ const FlatItem = ({ flat }) => (
     <td>{flat.HasBalcony ? 'Tak' : 'Nie'}</td>
     <td>{flat.Price}</td>
     <td>
-      <Link to={'/apartament/' + flat.Id}>
+      <Link to={'/apartament/details/' + flat.Id}>
         <button>Szczegóły</button>
       </Link>
     </td>
