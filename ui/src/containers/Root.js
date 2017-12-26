@@ -6,13 +6,15 @@ import EditApartament from '../EditApartament';
 import Content from '../Content';
 import MainMenu from '../MainMenu';
 import ImageUploadTest from './ImageUploadTest';
+import FlatContainer from './FlatContainer';
+import FlatDetailsContainer from './FlatDetailsContainer';
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <div>
       <MainMenu />
-      <Route exact={true} path="/" component={Content} />
-      <Route path="/apartament/:id?" component={EditApartament} />
+      <Route exact={true} path="/" component={FlatContainer} />
+      <Route path="/apartament/:id?" component={FlatDetailsContainer} />
       <Route path="/picture" component={ImageUploadTest} />
     </div>
   </Provider>

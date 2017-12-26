@@ -23,6 +23,7 @@ router.get('/', function (req, res, next) {
     let counter = 0;
     db.each(`SELECT Id, UserId, City, Street, NumberOfRooms, RoomArea, Floor, HasBalcony, Description, Price
     FROM Flats`, [], (err, row) => {
+        row.HasBalcony = !!row.HasBalcony;
         counter++;
         db.all(`SELECT Id,FlatId,Filename,Filetype FROM Pictures WHERE FlatId = $flatId`, {
             $flatId: row.Id

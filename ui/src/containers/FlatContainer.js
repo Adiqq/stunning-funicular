@@ -1,56 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showDetails } from '../actions';
-import { getVisibleFlats } from '../reducers/flats';
 import FlatItem from '../components/FlatItem';
+import { getFlats } from '../reducers/flats';
 
-const FlatContainer = ({ flats, showDetails }) => (
+const FlatContainer = ({ flats }) => (
   <table>
-    <tr>
-      <th>Zdjęcie</th>
-      <th>Miasto</th>
-      <th>Liczba pokoi</th>
-      <th>Piętro</th>
-      <th>Posiada balkon</th>
-      <th>Cena</th>
-    </tr>
-    {flats.map(flat => (
-      <FlatItem
-        key={flat.id}
-        flat={flat}
-        onShowDetailsClicked={() => showDetails(flat.id)}
-      />
-    ))}
+    <thead>
+      <tr>
+        <th>Zdjęcie</th>
+        <th>Miasto</th>
+        <th>Liczba pokoi</th>
+        <th>Powierzchnia</th>
+        <th>Piętro</th>
+        <th>Posiada balkon</th>
+        <th>Cena</th>
+      </tr>
+    </thead>
+    <tbody>{flats.map(flat => <FlatItem key={flat.Id} flat={flat} />)}</tbody>
   </table>
 );
 
 FlatContainer.propTypes = {
   flats: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      userId: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
-      street: PropTypes.string.isRequired,
-      numberOfRooms: PropTypes.number.isRequired,
-      roomArea: PropTypes.number.isRequired,
-      floor: PropTypes.string.isRequired,
-      hasBalcony: PropTypes.bool.isRequired,
-      description: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      pictures: PropTypes.arrayOf(
+      Id: PropTypes.string.isRequired,
+      UserId: PropTypes.string.isRequired,
+      City: PropTypes.string.isRequired,
+      Street: PropTypes.string.isRequired,
+      NumberOfRooms: PropTypes.number.isRequired,
+      RoomArea: PropTypes.number.isRequired,
+      Floor: PropTypes.string.isRequired,
+      HasBalcony: PropTypes.bool.isRequired,
+      Description: PropTypes.string.isRequired,
+      Price: PropTypes.number.isRequired,
+      Pictures: PropTypes.arrayOf(
         PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          filename: PropTypes.string.isRequired
+          Id: PropTypes.string.isRequired,
+          Filename: PropTypes.string.isRequired
         })
-      ).isRequired
+      ).iDetailssRequired
     })
-  ).isRequired,
-  showDetails: PropTypes.func.isRequired
+  ).isRequired
 };
 
 const mapStateToProps = state => ({
-  products: getVisibleFlats(state.flats)
+  flats: getFlats(state.flats)
 });
 
-export default connect(mapStateToProps, { showDetails })(FlatContainer);
+export default connect(mapStateToProps)(FlatContainer);

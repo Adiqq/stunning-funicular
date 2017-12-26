@@ -1,5 +1,7 @@
 import flats from '../api/flats';
 import * as types from '../constants/ActionTypes';
+import { normalize } from 'normalizr';
+import * as schema from '../api/schema';
 
 const receiveFlats = flats => ({
   type: types.RECEIVE_FLATS,
@@ -7,7 +9,9 @@ const receiveFlats = flats => ({
 });
 
 export const getAllFlats = () => dispatch => {
+  console.log('getting');
   flats.get().then(response => {
-    dispatch(receiveFlats(response.data));
+    console.log(normalize(response.data, schema.flatList));
+    dispatch(receiveFlats(normalize(response.data, schema.flatList)));
   });
 };
