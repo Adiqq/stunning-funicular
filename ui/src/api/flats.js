@@ -5,5 +5,10 @@ export default {
   get: () => {
     return get(url);
   },
-  post: () => {}
+  post: formData => {
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    };
+    return post(url, formData, config);
+  }
 };

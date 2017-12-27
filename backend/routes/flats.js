@@ -37,6 +37,10 @@ router.get('/', function (req, res, next) {
         })
     });
 });
+router.post('/offers', function(req,res,next) {
+    console.log(req.body);
+   res.send('ok');
+});
 router.post('/', upload.array('pictures'), function (req, res, next) {
     //console.log(req);
     let flatId = uuidv4();

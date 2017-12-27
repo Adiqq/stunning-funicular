@@ -1,5 +1,13 @@
 import { schema } from 'normalizr';
 
+const user = new schema.Entity(
+  'Users',
+  {},
+  {
+    idAttribute: 'Id'
+  }
+);
+
 // Define a users schema
 const picture = new schema.Entity(
   'Pictures',
@@ -20,3 +28,15 @@ export const flat = new schema.Entity(
   }
 );
 export const flatList = [flat];
+
+export const flatOffer = new schema.Entity(
+  'FlatOffers',
+  {
+    Source: user,
+    Target: user,
+    Flat: flat
+  },
+  { idAttribute: 'Id' }
+);
+
+export const flatOfferList = [flatOffer];

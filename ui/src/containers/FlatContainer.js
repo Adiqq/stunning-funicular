@@ -4,12 +4,21 @@ import { connect } from 'react-redux';
 import FlatItem from '../components/FlatItem';
 import { getFlats } from '../reducers/flats';
 import { Link } from 'react-router-dom';
+import FlatPriceFilter from './FlatPriceFilter';
+import NumberOfRoomsFilter from './NumberOfRoomsFilter';
+import RoomAreaFilter from './RoomAreaFilter';
+import BalconyFilter from './BalconyFilter';
+import { wantBuy } from '../actions';
 
-const FlatContainer = ({ flats }) => (
+const FlatContainer = ({ flats, wantBuy }) => (
   <div>
     <Link to={'apartament'}>
       <button>Dodaj ofertę</button>
     </Link>
+    <FlatPriceFilter />
+    <NumberOfRoomsFilter />
+    <RoomAreaFilter />
+    <BalconyFilter />
     <table>
       <thead>
         <tr>
@@ -22,7 +31,11 @@ const FlatContainer = ({ flats }) => (
           <th>Cena</th>
         </tr>
       </thead>
-      <tbody>{flats.map(flat => <FlatItem key={flat.Id} flat={flat} />)}</tbody>
+      <tbody>
+        {flats.map(flat => (
+          <FlatItem key={flat.Id} flat={flat} wantBuy={wantBuy} />
+        ))}
+      </tbody>
     </table>
   </div>
 );
@@ -45,13 +58,14 @@ FlatContainer.propTypes = {
           Id: PropTypes.string.isRequired,
           Filename: PropTypes.string.isRequired
         })
-      ).iDetailssRequired
+      ).isRequired
     })
-  ).isRequired
+  ).isRequired,
+  wantBuy: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   flats: getFlats(state.flats)
 });
 
-export default connect(mapStateToProps)(FlatContainer);
+export default connect(mapStateToProps, { wantBuy })(FlatContainer);

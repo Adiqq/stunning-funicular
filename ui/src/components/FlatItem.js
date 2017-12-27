@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const FlatItem = ({ flat }) => (
+const FlatItem = ({ flat, wantBuy }) => (
   <tr>
     <td>
       <img
@@ -21,6 +21,13 @@ const FlatItem = ({ flat }) => (
       <Link to={'/apartament/details/' + flat.Id}>
         <button>Szczegóły</button>
       </Link>
+      <button
+        onClick={() => {
+          wantBuy(flat.Id);
+        }}
+      >
+        Chcę kupić
+      </button>
     </td>
   </tr>
 );
@@ -40,7 +47,8 @@ FlatItem.propTypes = {
         Filename: PropTypes.string.isRequired
       })
     ).isRequired
-  }).isRequired
+  }).isRequired,
+  wantBuy: PropTypes.func.isRequired
 };
 
 export default FlatItem;

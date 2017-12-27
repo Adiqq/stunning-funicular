@@ -3,7 +3,14 @@ import { Field, reduxForm } from 'redux-form';
 import { post } from 'axios/index';
 
 const EditApartamentForm = props => {
-  const { handleSubmit } = props;
+  const {
+    handleSubmit,
+    pristine,
+    reset,
+    submitting,
+    flat,
+    submitToServer
+  } = props;
   const append = (form, fieldName, field) => {
     if (typeof field !== 'undefined') {
       form.append(fieldName, field);
@@ -11,7 +18,6 @@ const EditApartamentForm = props => {
   };
   const onFormSubmit = data => {
     let formData = new FormData();
-    console.log(data);
     append(formData, 'city', data.city);
     append(formData, 'street', data.street);
     append(formData, 'pictures', data.pictures[0]);
@@ -22,17 +28,7 @@ const EditApartamentForm = props => {
     append(formData, 'description', data.description);
     append(formData, 'price', data.price);
 
-    const config = {
-      headers: { 'content-type': 'multipart/form-data' }
-    };
-    const url = 'http://localhost:3001/flats/';
-    post(url, formData, config)
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    submitToServer(formData);
   };
   return (
     <div className="wrapper">
