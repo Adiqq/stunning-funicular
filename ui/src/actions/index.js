@@ -4,6 +4,7 @@ import users from '../api/user';
 import * as types from '../constants/ActionTypes';
 import { normalize } from 'normalizr';
 import * as schema from '../api/schema';
+import history from '../helpers/history';
 
 const receiveFlats = flats => ({
   type: types.RECEIVE_FLATS,
@@ -105,6 +106,7 @@ export const login = data => dispatch => {
     .login(token)
     .then(response => {
       dispatch(loginUserSuccess(response.data));
+      history.push('/');
     })
     .catch(reason => {
       dispatch(loginUserError());
@@ -126,4 +128,11 @@ export const register = data => dispatch => {
     .catch(reason => {
       dispatch(registerUserError());
     });
+};
+
+export const signout = () => {
+  users.signout();
+  return {
+    type: types.SIGNOUT
+  };
 };

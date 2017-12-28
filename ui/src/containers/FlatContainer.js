@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlatItem from '../components/FlatItem';
-import { getFlats } from '../reducers/flats';
+import { getFlats, getVisibleFlats } from '../reducers/flats';
 import { Link } from 'react-router-dom';
 import FlatPriceFilter from './FlatPriceFilter';
 import NumberOfRoomsFilter from './NumberOfRoomsFilter';
@@ -79,7 +79,7 @@ FlatContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  flats: getFlats(state.flats)
+  flats: getVisibleFlats(state)
 });
 
 export default connect(mapStateToProps, { wantBuy, getAllFlats })(

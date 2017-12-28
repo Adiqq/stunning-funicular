@@ -1,4 +1,4 @@
-import { LOGIN_USER_SUCCESS } from '../constants/ActionTypes';
+import { LOGIN_USER_SUCCESS, SIGNOUT } from '../constants/ActionTypes';
 
 const usersReducer = (state = {}, action) => {
   switch (action.type) {
@@ -7,6 +7,8 @@ const usersReducer = (state = {}, action) => {
         ...state,
         ...action.user
       };
+    case SIGNOUT:
+      return {};
     default:
       return state;
   }

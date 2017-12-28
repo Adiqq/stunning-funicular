@@ -12,5 +12,8 @@ export default {
       password: data.password,
       phoneNumber: data.phoneNumber
     });
+  },
+  signout: () => {
+    delete axios.defaults.headers.common['Authorization'];
   }
 };

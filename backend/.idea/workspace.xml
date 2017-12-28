@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cf98830-6435-4c25-b4a8-3f647e3e1242" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuGuest.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuUser.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/PrivateRoute.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/helpers/history.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../ui/package.json" afterPath="$PROJECT_DIR$/../ui/package.json" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/actions/index.js" afterPath="$PROJECT_DIR$/../ui/src/actions/index.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/api/user.js" afterPath="$PROJECT_DIR$/../ui/src/api/user.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenu.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenu.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/containers/Root.js" afterPath="$PROJECT_DIR$/../ui/src/containers/Root.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/index.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/index.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenuUser.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuUser.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/index.js" afterPath="$PROJECT_DIR$/../ui/src/index.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/flats.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/flats.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/reducers/users.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/users.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />

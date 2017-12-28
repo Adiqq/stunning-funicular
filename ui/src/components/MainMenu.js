@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './MainMenu.css';
 import { Link } from 'react-router-dom';
-import { MainMenuUser } from './MainMenuUser';
+import MainMenuUser from './MainMenuUser';
 import { MainMenuGuest } from './MainMenuGuest';
 import { getRole } from '../reducers/users';
 import { connect } from 'react-redux';
