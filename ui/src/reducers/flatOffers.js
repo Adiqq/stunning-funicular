@@ -1,4 +1,6 @@
 import { RECEIVE_FLAT_OFFERS } from '../constants/ActionTypes';
+import { denormalize } from 'normalizr';
+import { flatOfferList } from '../api/schema';
 
 const flatOffersReducer = (state = {}, action) => {
   switch (action.type) {
@@ -11,6 +13,12 @@ const flatOffersReducer = (state = {}, action) => {
     default:
       return state;
   }
+};
+
+export const getMessages = state => {
+  return state && state.FlatOffers
+    ? denormalize(state.Result, flatOfferList, state)
+    : [];
 };
 
 export default flatOffersReducer;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlatItem from '../components/FlatItem';
@@ -8,37 +8,50 @@ import FlatPriceFilter from './FlatPriceFilter';
 import NumberOfRoomsFilter from './NumberOfRoomsFilter';
 import RoomAreaFilter from './RoomAreaFilter';
 import BalconyFilter from './BalconyFilter';
-import { wantBuy } from '../actions';
+import { getAllFlats, wantBuy } from '../actions';
+import * as action from '../actions';
 
-const FlatContainer = ({ flats, wantBuy }) => (
-  <div>
-    <Link to={'apartament'}>
-      <button>Dodaj ofertę</button>
-    </Link>
-    <FlatPriceFilter />
-    <NumberOfRoomsFilter />
-    <RoomAreaFilter />
-    <BalconyFilter />
-    <table>
-      <thead>
-        <tr>
-          <th>Zdjęcie</th>
-          <th>Miasto</th>
-          <th>Liczba pokoi</th>
-          <th>Powierzchnia</th>
-          <th>Piętro</th>
-          <th>Posiada balkon</th>
-          <th>Cena</th>
-        </tr>
-      </thead>
-      <tbody>
-        {flats.map(flat => (
-          <FlatItem key={flat.Id} flat={flat} wantBuy={wantBuy} />
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+class FlatContainer extends Component {
+  componentDidMount() {
+    console.log('did mount');
+    this.props.getAllFlats();
+  }
+  componentDidUpdate() {
+    console.log('did update');
+  }
+  render() {
+    const { flats, wantBuy } = this.props;
+    return (
+      <div>
+        <Link to={'apartament'}>
+          <button>Dodaj ofertę</button>
+        </Link>
+        <FlatPriceFilter />
+        <NumberOfRoomsFilter />
+        <RoomAreaFilter />
+        <BalconyFilter />
+        <table>
+          <thead>
+            <tr>
+              <th>Zdjęcie</th>
+              <th>Miasto</th>
+              <th>Liczba pokoi</th>
+              <th>Powierzchnia</th>
+              <th>Piętro</th>
+              <th>Posiada balkon</th>
+              <th>Cena</th>
+            </tr>
+          </thead>
+          <tbody>
+            {flats.map(flat => (
+              <FlatItem key={flat.Id} flat={flat} wantBuy={wantBuy} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
 
 FlatContainer.propTypes = {
   flats: PropTypes.arrayOf(
@@ -61,11 +74,14 @@ FlatContainer.propTypes = {
       ).isRequired
     })
   ).isRequired,
-  wantBuy: PropTypes.func.isRequired
+  wantBuy: PropTypes.func.isRequired,
+  getAllFlats: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   flats: getFlats(state.flats)
 });
 
-export default connect(mapStateToProps, { wantBuy })(FlatContainer);
+export default connect(mapStateToProps, { wantBuy, getAllFlats })(
+  FlatContainer
+);

@@ -8,13 +8,22 @@ const db = new sqlite3.Database('db/db.sqlite3');
 
 const {check, validationResult} = require('express-validator/check');
 const {matchedData, sanitize} = require('express-validator/filter');
+const passport = require('passport');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
-router.post('/', [
-    check('login').isEmail().withMessage("musi być adresem e-mail").trim().normalizeEmail()
+router.post('/login', passport.authenticate('basic', {session: false}),
+    function (req, res, next) {
+        console.log('ok');
+        res.json({
+            Id: req.user.Id,
+            Role: req.user.Role
+        });
+    });
+router.post('/register', [
+    check('email').isEmail().withMessage("musi być adresem e-mail").trim().normalizeEmail()
         .custom(value => {
             return new Promise((resolve, reject) => {
                 db.get(`
@@ -42,6 +51,7 @@ router.post('/', [
 ], function (req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+        console.log(errors.mapped());
         return res.status(422).json({errors: errors.mapped()});
     }
     const user = matchedData(req);
@@ -53,11 +63,11 @@ router.post('/', [
             INSERT INTO Users(Id, PhoneNumber, Hash, Role)
             VALUES($id, $number, $hash, 'User')
             `, {
-                $id: user.login,
+                $id: user.email,
                 $number: user.phoneNumber,
                 $hash: hash
             }, (err) => {
-                if(err){
+                if (err) {
                     res.status(500).send('cannot add user to db')
                 }
                 res.send('ok');

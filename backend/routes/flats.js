@@ -4,6 +4,7 @@ const sqlite3 = require('sqlite3');
 const uuidv4 = require('uuid/v4');
 
 const multer = require('multer');
+const passport = require("passport");
 const db = new sqlite3.Database('db/db.sqlite3');
 
 const storage = multer.diskStorage({
@@ -18,28 +19,29 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 /* GET flats listing. */
-router.get('/', function (req, res, next) {
-    let flats = [];
-    let counter = 0;
-    db.each(`SELECT Id, UserId, City, Street, NumberOfRooms, RoomArea, Floor, HasBalcony, Description, Price
+router.get('/', passport.authenticate('basic', {session: false}),
+    function (req, res, next) {
+        let flats = [];
+        let counter = 0;
+        db.each(`SELECT Id, UserId, City, Street, NumberOfRooms, RoomArea, Floor, HasBalcony, Description, Price
     FROM Flats`, [], (err, row) => {
-        row.HasBalcony = !!row.HasBalcony;
-        counter++;
-        db.all(`SELECT Id,FlatId,Filename,Filetype FROM Pictures WHERE FlatId = $flatId`, {
-            $flatId: row.Id
-        }, (err, rows) => {
-            row.Pictures = rows;
-            flats.push(row);
-            counter--;
-            if (counter === 0) {
-                res.send(flats);
-            }
-        })
+            row.HasBalcony = !!row.HasBalcony;
+            counter++;
+            db.all(`SELECT Id,FlatId,Filename,Filetype FROM Pictures WHERE FlatId = $flatId`, {
+                $flatId: row.Id
+            }, (err, rows) => {
+                row.Pictures = rows;
+                flats.push(row);
+                counter--;
+                if (counter === 0) {
+                    res.send(flats);
+                }
+            })
+        });
     });
-});
-router.post('/offers', function(req,res,next) {
+router.post('/offers', function (req, res, next) {
     console.log(req.body);
-   res.send('ok');
+    res.send('ok');
 });
 router.post('/', upload.array('pictures'), function (req, res, next) {
     //console.log(req);

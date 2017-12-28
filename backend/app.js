@@ -72,7 +72,7 @@ FOREIGN KEY(Role) REFERENCES Roles(Name)
 passport.use(new Strategy(
     (username, password, cb) => {
         db.get(`
-            SELECT Id FROM Users WHERE Id = $id
+            SELECT Id,Hash,Role FROM Users WHERE Id = $id
             `, {
                 $id: username
             },
@@ -88,13 +88,7 @@ passport.use(new Strategy(
                 });
             }
         )
-    }));        // db.users.findByUsername(username, function(err, user) {
-        //     if (err) { return cb(err); }
-        //     if (!user) { return cb(null, false); }
-        //     if (user.password != password) { return cb(null, false); }
-        //     return cb(null, user);
-        // });
-
+    }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -110,7 +104,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
 

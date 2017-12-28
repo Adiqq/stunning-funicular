@@ -8,7 +8,6 @@ import Root from './containers/Root';
 import * as action from './actions';
 
 const store = configureStore();
-store.dispatch(action.getAllFlats());
 
 render(
   <Router>

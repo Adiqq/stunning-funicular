@@ -16,6 +16,12 @@ class MainMenu extends Component {
           <li>
             <Link to="/picture">Test zdjęć</Link>
           </li>
+          <li>
+            <Link to="/register">Rejestracja</Link>
+          </li>
+          <li>
+            <Link to="/login">Logowanie</Link>
+          </li>
         </ul>
       </div>
     );

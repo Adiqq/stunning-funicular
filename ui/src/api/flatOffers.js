@@ -1,4 +1,5 @@
 import { get, post } from 'axios/index';
+import * as axios from 'axios';
 
 const url = 'http://localhost:3001/flats/offers';
 export default {
@@ -9,5 +10,8 @@ export default {
     return post(url, {
       id: flatId
     });
+  },
+  delete: flatId => {
+    return axios.delete(url + '/' + flatId);
   }
 };

@@ -7,6 +7,9 @@ import ImageUploadTest from './ImageUploadTest';
 import FlatContainer from './FlatContainer';
 import FlatDetailsContainer from './FlatDetailsContainer';
 import FlatEditContainer from './FlatEditContainer';
+import MessagesContainer from './MessagesContainer';
+import LoginContainer from './LoginContainer';
+import RegisterContainer from './RegisterContainer';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -20,6 +23,8 @@ const Root = ({ store }) => (
         <Route path="/apartament/:id?" component={FlatEditContainer} />
         <Route path="/messages" component={MessagesContainer} />
         <Route path="/picture" component={ImageUploadTest} />
+        <Route path="/login" component={LoginContainer} />
+        <Route path="/register" component={RegisterContainer} />
         <Route path="/" component={FlatContainer} />
       </Switch>
     </div>

@@ -2,28 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cf98830-6435-4c25-b4a8-3f647e3e1242" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/api/flatOffers.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/RangeFilter.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/BalconyFilter.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatPriceFilter.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/MessagesContainer.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/NumberOfRoomsFilter.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/RoomAreaFilter.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/reducers/filters.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/reducers/flatOffers.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/api/user.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/LoginContainer.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/RegisterContainer.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/reducers/users.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change beforePath="$PROJECT_DIR$/routes/flats.js" afterPath="$PROJECT_DIR$/routes/flats.js" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
       <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/../ui/src/actions/index.js" afterPath="$PROJECT_DIR$/../ui/src/actions/index.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/api/flats.js" afterPath="$PROJECT_DIR$/../ui/src/api/flats.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/api/schema.js" afterPath="$PROJECT_DIR$/../ui/src/api/schema.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" afterPath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/FlatItem.js" afterPath="$PROJECT_DIR$/../ui/src/components/FlatItem.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/api/flatOffers.js" afterPath="$PROJECT_DIR$/../ui/src/api/flatOffers.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenu.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenu.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatEditContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatEditContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/MessagesContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/MessagesContainer.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/containers/Root.js" afterPath="$PROJECT_DIR$/../ui/src/containers/Root.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/index.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/index.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/index.js" afterPath="$PROJECT_DIR$/../ui/src/index.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/flatOffers.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/flatOffers.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,8 +36,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="32" lean-forward="false" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+            <state relative-caret-position="170">
+              <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -50,8 +46,8 @@
       <file leaf-file-name="flats.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/flats.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="40" column="26" lean-forward="false" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+            <state relative-caret-position="357">
+              <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -110,8 +106,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="124" column="14" lean-forward="false" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
+            <state relative-caret-position="-623">
+              <caret line="74" column="31" lean-forward="false" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -189,6 +185,11 @@
             <path>
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -206,8 +207,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -255,12 +256,13 @@
       <workItem from="1513619473629" duration="4735000" />
       <workItem from="1514035583920" duration="15065000" />
       <workItem from="1514211611117" duration="4024000" />
-      <workItem from="1514315586651" duration="2039000" />
+      <workItem from="1514315586651" duration="2040000" />
+      <workItem from="1514392792891" duration="9136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36102000" />
+    <option name="totallyTimeSpent" value="45239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1370" height="739" extended-state="6" />
@@ -297,11 +299,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/flats.js</url>
-          <line>47</line>
+          <line>49</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/users.js</url>
+          <line>19</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -664,22 +672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="32" lean-forward="false" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2108">
@@ -688,18 +680,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="124" column="14" lean-forward="false" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
+        <state relative-caret-position="-623">
+          <caret line="74" column="31" lean-forward="false" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/flats.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="40" column="26" lean-forward="false" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+        <state relative-caret-position="357">
+          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
           <folding />
         </state>
       </provider>
