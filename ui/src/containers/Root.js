@@ -10,22 +10,23 @@ import FlatEditContainer from './FlatEditContainer';
 import MessagesContainer from './MessagesContainer';
 import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
+import PrivateRoute from './PrivateRoute';
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <div>
       <MainMenu />
       <Switch>
-        <Route
+        <PrivateRoute
           path="/apartament/details/:id"
           component={FlatDetailsContainer}
         />
-        <Route path="/apartament/:id?" component={FlatEditContainer} />
-        <Route path="/messages" component={MessagesContainer} />
+        <PrivateRoute path="/apartament/:id?" component={FlatEditContainer} />
+        <PrivateRoute path="/messages" component={MessagesContainer} />
         <Route path="/picture" component={ImageUploadTest} />
         <Route path="/login" component={LoginContainer} />
         <Route path="/register" component={RegisterContainer} />
-        <Route path="/" component={FlatContainer} />
+        <PrivateRoute path="/" component={FlatContainer} />
       </Switch>
     </div>
   </Provider>

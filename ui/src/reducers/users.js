@@ -12,4 +12,12 @@ const usersReducer = (state = {}, action) => {
   }
 };
 
+export const isLoggedIn = state => {
+  return state.Id;
+};
+
+export const getRole = state => {
+  return state.Role;
+};
+
 export default usersReducer;
