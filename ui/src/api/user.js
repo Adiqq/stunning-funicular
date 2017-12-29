@@ -15,5 +15,17 @@ export default {
   },
   signout: () => {
     delete axios.defaults.headers.common['Authorization'];
+  },
+  changePassword: data => {
+    return post(`${url}/changePassword`, {
+      userId: data.userId,
+      password: data.password
+    });
+  },
+  deleteUser: id => {
+    return axios.delete(`${url}/${id}`);
+  },
+  getAll: () => {
+    return axios.get(url);
   }
 };

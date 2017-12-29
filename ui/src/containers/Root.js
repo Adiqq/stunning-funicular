@@ -11,6 +11,7 @@ import MessagesContainer from './MessagesContainer';
 import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
 import PrivateRoute from './PrivateRoute';
+import UserContainer from './UserContainer';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -23,6 +24,7 @@ const Root = ({ store }) => (
         />
         <PrivateRoute path="/apartament/:id?" component={FlatEditContainer} />
         <PrivateRoute path="/messages" component={MessagesContainer} />
+        <PrivateRoute path="/users" component={UserContainer} />
         <Route path="/picture" component={ImageUploadTest} />
         <Route path="/login" component={LoginContainer} />
         <Route path="/register" component={RegisterContainer} />

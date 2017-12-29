@@ -40,3 +40,5 @@ export const flatOffer = new schema.Entity(
 );
 
 export const flatOfferList = [flatOffer];
+
+export const userList = [user];

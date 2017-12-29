@@ -17,6 +17,7 @@ const db = new sqlite3.Database('db/db.sqlite3');
 const passport = require('passport');
 const Strategy = require('passport-http').BasicStrategy;
 
+const saltRounds = 10;
 const bcrypt = require('bcrypt');
 
 const printError = (err) => {
@@ -69,6 +70,28 @@ FOREIGN KEY(Role) REFERENCES Roles(Name)
 `, [], printError);
 });
 
+bcrypt.hash('Test@1234', saltRounds, function (err, hash) {
+    db.run(`
+    INSERT OR IGNORE INTO USERS(Id,PhoneNumber,Hash,Role)
+    VALUES($id, $number,$hash,$role);
+    `, {
+        $id: 'test@test.pl',
+        $number: '+48888888800',
+        $hash: hash,
+        $role: 'User'
+    });
+    db.run(`
+    INSERT OR IGNORE INTO USERS(Id,PhoneNumber,Hash,Role)
+    VALUES($id, $number,$hash,$role);
+    `, {
+        $id: 'admin@test.pl',
+        $number: '+48888888801',
+        $hash: hash,
+        $role: 'Administrator'
+    });
+
+});
+
 passport.use(new Strategy(
     (username, password, cb) => {
         db.get(`
@@ -77,12 +100,16 @@ passport.use(new Strategy(
                 $id: username
             },
             (err, row) => {
-                if (err) { return cb(err); }
-                if (!row) { return cb(null, false); }
-                bcrypt.compare(password, row.Hash, function(err, res) {
-                    if(res){
+                if (err) {
+                    return cb(err);
+                }
+                if (!row) {
+                    return cb(null, false);
+                }
+                bcrypt.compare(password, row.Hash, function (err, res) {
+                    if (res) {
                         return cb(null, row);
-                    } else{
+                    } else {
                         return cb(null, false);
                     }
                 });

@@ -11,8 +11,14 @@ const {matchedData, sanitize} = require('express-validator/filter');
 const passport = require('passport');
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
+router.get('/', passport.authenticate('basic', {session: false}), function (req, res, next) {
+    if(req.user.Role === 'Administrator') {
+        db.all(`SELECT Id, PhoneNumber, Role FROM Users`, {}, (err, rows) => {
+            res.json(rows);
+        })
+    } else {
+        res.status(401).send('Insufficient privileges');
+    }
 });
 router.post('/login', passport.authenticate('basic', {session: false}),
     function (req, res, next) {

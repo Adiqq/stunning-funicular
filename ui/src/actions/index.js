@@ -5,6 +5,7 @@ import * as types from '../constants/ActionTypes';
 import { normalize } from 'normalizr';
 import * as schema from '../api/schema';
 import history from '../helpers/history';
+import { DELETE_USER_ERROR } from '../constants/ActionTypes';
 
 const receiveFlats = flats => ({
   type: types.RECEIVE_FLATS,
@@ -135,4 +136,60 @@ export const signout = () => {
   return {
     type: types.SIGNOUT
   };
+};
+
+const changePasswordSuccess = user => ({
+  types: types.CHANGE_PASSWORD_SUCCESS,
+  user
+});
+const changePasswordError = user => ({
+  types: types.CHANGE_PASSWORD_ERROR,
+  user
+});
+
+export const changePassword = (user, data) => dispatch => {
+  users
+    .changePassword({
+      userId: user.Id,
+      password: data.password
+    })
+    .then(result => {
+      dispatch(changePasswordSuccess(user));
+    })
+    .catch(reason => {
+      dispatch(changePasswordError(user));
+    });
+};
+
+const deleteUserSuccess = user => ({
+  type: types.DELETE_USER_SUCCESS,
+  user
+});
+
+const deleteUserError = user => ({
+  type: types.DELETE_USER_ERROR,
+  user
+});
+
+export const deleteUser = user => dispatch => {
+  users
+    .deleteUser(user.Id)
+    .then(result => {
+      dispatch(deleteUserSuccess(user));
+    })
+    .catch(reason => {
+      dispatch(deleteUserError(user));
+    });
+};
+
+const receiveUsers = users => ({
+  type: types.RECEIVE_USERS,
+  users
+});
+
+export const getAllUsers = () => dispatch => {
+  users.getAll().then(result => {
+    console.log(normalize(result.data, schema.userList));
+    dispatch(receiveUsers(normalize(result.data, schema.userList)));
+  });
 };

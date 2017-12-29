@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import './MainMenu.css';
-import { Link } from 'react-router-dom';
 import MainMenuUser from './MainMenuUser';
 import { MainMenuGuest } from './MainMenuGuest';
-import { getRole } from '../reducers/users';
+import { getRole } from '../reducers/user';
 import { connect } from 'react-redux';
+import MainMenuAdmin from './MainMenuAdmin';
 
 const MainMenu = ({ role }) => {
-  if (role) {
-    return <MainMenuUser />;
-  } else {
-    return <MainMenuGuest />;
+  switch (role) {
+    case 'User':
+      return <MainMenuUser />;
+    case 'Administrator':
+      return <MainMenuAdmin />;
+    default:
+      return <MainMenuGuest />;
   }
 };
 
 const mapStateToProps = state => ({
-  role: getRole(state.users)
+  role: getRole(state)
 });
 
 export default connect(mapStateToProps)(MainMenu);
