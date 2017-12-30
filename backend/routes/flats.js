@@ -59,7 +59,7 @@ router.post('/', upload.array('pictures'), function (req, res, next) {
         $numOfRooms: req.body.numberOfRooms,
         $roomArea: req.body.roomArea,
         $floor: req.body.floor,
-        $hasBalcony: req.body.hasBalcony === true ? 1 : 0,
+        $hasBalcony: req.body.hasBalcony === 'true' ? 1 : 0,
         $description: req.body.description,
         $price: req.body.price
     });

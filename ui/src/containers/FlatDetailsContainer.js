@@ -51,7 +51,7 @@ FlatDetailsContainer.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    flat: getFlat(state.flats, ownProps.match.params.id)
+    flat: getFlat(state, ownProps.match.params.id)
   };
 };
 

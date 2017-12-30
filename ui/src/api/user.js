@@ -1,4 +1,4 @@
-import { get, post } from 'axios/index';
+import { get, post, put } from 'axios/index';
 import * as axios from 'axios';
 const url = 'http://localhost:3001/users';
 export default {
@@ -17,8 +17,7 @@ export default {
     delete axios.defaults.headers.common['Authorization'];
   },
   changePassword: data => {
-    return post(`${url}/changePassword`, {
-      userId: data.userId,
+    return put(`${url}/${data.userId}/password`, {
       password: data.password
     });
   },

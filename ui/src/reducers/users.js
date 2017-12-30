@@ -30,7 +30,9 @@ export const getUsers = state => {
 };
 
 export const getUser = (state, id) => {
-  return getUsers(state).filter(user => user.Id === id);
+  let users = getUsers(state);
+  let user = users.filter(user => user.Id === id)[0];
+  return user;
 };
 
 export default usersReducer;

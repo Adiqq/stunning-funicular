@@ -1,3 +1,4 @@
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { changePassword, deleteUser } from '../actions';
@@ -39,7 +40,7 @@ const mapStateToProps = (state, ownProps) => ({
 UsersDetailsContainer = connect(mapStateToProps, {
   changePassword,
   deleteUser
-});
+})(UsersDetailsContainer);
 
 export default reduxForm({
   form: 'changePasswordForm'

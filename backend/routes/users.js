@@ -10,9 +10,55 @@ const {check, validationResult} = require('express-validator/check');
 const {matchedData, sanitize} = require('express-validator/filter');
 const passport = require('passport');
 
+router.put('/:userId/password', passport.authenticate('basic', {session: false}), function (req, res, next) {
+    if (req.user.Role === 'Administrator') {
+        bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+            if (err) {
+                res.status(500).send('something went wrong');
+            } else {
+                db.run(`
+            UPDATE Users
+            SET Hash = $hash
+            WHERE Id = $id
+            `, {
+                    $id: req.params.userId,
+                    $hash: hash
+                }, (err) => {
+                    if (err) {
+                        res.status(500).send('cannot update password')
+                    }
+                    res.send('ok');
+                });
+            }
+        });
+    } else {
+        res.status(401).send('Insufficient privileges');
+    }
+});
+
+router.delete('/:userId', passport.authenticate('basic', {session: false}), function (req, res, next) {
+    if (req.user.Role === 'Administrator') {
+        db.run(`
+            DELETE FROM Users
+            WHERE Id = $id
+            `, {
+            $id: req.params.userId
+        }, (err) => {
+            if (err) {
+                res.status(500).send('cannot delete user')
+            }
+            res.send('ok');
+        });
+    }
+    else {
+        res.status(401).send('Insufficient privileges');
+    }
+})
+;
+
 /* GET users listing. */
 router.get('/', passport.authenticate('basic', {session: false}), function (req, res, next) {
-    if(req.user.Role === 'Administrator') {
+    if (req.user.Role === 'Administrator') {
         db.all(`SELECT Id, PhoneNumber, Role FROM Users`, {}, (err, rows) => {
             res.json(rows);
         })
