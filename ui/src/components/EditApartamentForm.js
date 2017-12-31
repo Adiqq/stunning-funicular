@@ -63,9 +63,12 @@ const EditApartamentForm = props => {
 
           <Field name="floor" component="select">
             <option />
-            <option value="zero">Parter</option>
-            <option value="first">1</option>
-            <option value="second">2</option>
+            <option value="0">Parter</option>
+            <option value="1">1 piętro</option>
+            <option value="2">2 piętro</option>
+            <option value="3">3 piętro</option>
+            <option value="4">4 piętro</option>
+            <option value="5">5 piętro lub wyższe</option>
           </Field>
 
           <label htmlFor="hasBalcony">Posiada balkon</label>

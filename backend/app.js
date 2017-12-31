@@ -24,28 +24,6 @@ const printError = (err) => {
     if (err) console.error(err);
 };
 db.run(`
-CREATE TABLE IF NOT EXISTS Flats(
-Id TEXT PRIMARY KEY,
-UserId TEXT NOT NULL,
-City TEXT NOT NULL,
-Street TEXT NOT NULL,
-NumberOfRooms INTEGER NOT NULL,
-RoomArea INTEGER NOT NULL,
-Floor TEXT NOT NULL,
-HasBalcony INTEGER NOT NULL,
-Description TEXT NOT NULL,
-Price INTEGER NOT NULL
-);
-`, [], printError);
-db.run(`
-CREATE TABLE IF NOT EXISTS Pictures(
-Id TEXT PRIMARY KEY,
-FlatId TEXT NOT NULL,
-Filename TEXT NOT NULL,
-Filetype TEXT NOT NULL
-);
-`, [], printError);
-db.run(`
 CREATE TABLE IF NOT EXISTS Roles(
 Name TEXT PRIMARY KEY
 );
@@ -67,29 +45,87 @@ Hash TEXT NOT NULL,
 Role TEXT NOT NULL,
 FOREIGN KEY(Role) REFERENCES Roles(Name)
 );
-`, [], printError);
-});
-
-bcrypt.hash('Test@1234', saltRounds, function (err, hash) {
-    db.run(`
+`, [], (err) => {
+        printError(err);
+        bcrypt.hash('Test@1234', saltRounds, function (err, hash) {
+            db.run(`
     INSERT OR IGNORE INTO USERS(Id,PhoneNumber,Hash,Role)
     VALUES($id, $number,$hash,$role);
     `, {
-        $id: 'test@test.pl',
-        $number: '+48888888800',
-        $hash: hash,
-        $role: 'User'
-    });
-    db.run(`
+                $id: 'test@test.pl',
+                $number: '+48888888800',
+                $hash: hash,
+                $role: 'User'
+            });
+            db.run(`
     INSERT OR IGNORE INTO USERS(Id,PhoneNumber,Hash,Role)
     VALUES($id, $number,$hash,$role);
     `, {
-        $id: 'admin@test.pl',
-        $number: '+48888888801',
-        $hash: hash,
-        $role: 'Administrator'
-    });
+                $id: 'admin@test.pl',
+                $number: '+48888888801',
+                $hash: hash,
+                $role: 'Administrator'
+            });
+            db.run(`
+            CREATE TABLE IF NOT EXISTS Flats(
+            Id TEXT PRIMARY KEY,
+            UserId TEXT NOT NULL,
+            City TEXT NOT NULL,
+            Street TEXT NOT NULL,
+            NumberOfRooms INTEGER NOT NULL,
+            RoomArea INTEGER NOT NULL,
+            Floor INTEGER NOT NULL,
+            HasBalcony INTEGER NOT NULL,
+            Description TEXT NOT NULL,
+            Price INTEGER NOT NULL,
+            FOREIGN KEY(UserId) REFERENCES Users(Id)
+            );
+            `, [], (err) => {
+                printError(err);
+                db.run(`
+                CREATE TABLE IF NOT EXISTS Pictures(
+                Id TEXT PRIMARY KEY,
+                FlatId TEXT NOT NULL,
+                Filename TEXT NOT NULL,
+                Filetype TEXT NOT NULL,
+                FOREIGN KEY(FlatId) REFERENCES Flats(Id)
+                );
+                `, [], printError);
+                db.run(`
+                CREATE TABLE IF NOT EXISTS FlatStatuses(
+                Status TEXT PRIMARY KEY
+                );`, [], (err) => {
+                    printError(err);
+                    db.run(`
+                    INSERT OR IGNORE INTO FlatStatuses(Status)
+                    VALUES('Pending');
+                    `);
+                    db.run(`
+                    INSERT OR IGNORE INTO FlatStatuses(Status)
+                    VALUES('Accepted');
+                    `);
+                    db.run(`
+                    INSERT OR IGNORE INTO FlatStatuses(Status)
+                    VALUES('Rejected');
+                    `);
+                    db.run(`
+                    CREATE TABLE IF NOT EXISTS FlatOffers(
+                    SourceUserId TEXT,
+                    FlatId TEXT,
+                    Created TEXT,
+                    Modified TEXT,
+                    Status TEXT,
+                    PRIMARY KEY(SourceUserId, FlatId, Created),
+                    FOREIGN KEY(SourceUserId) REFERENCES Users(Id),
+                    FOREIGN KEY(FlatId) REFERENCES Flats(Id),
+                    FOREIGN KEY(Status) REFERENCES FlatStatuses(Status)
+                    );
+                    `, [], printError);
+                });
+            });
 
+        });
+    });
 });
 
 passport.use(new Strategy(

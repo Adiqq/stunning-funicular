@@ -1,4 +1,4 @@
-import { get, post } from 'axios/index';
+import { get, post, put } from 'axios/index';
 import * as axios from 'axios';
 
 const url = 'http://localhost:3001/flats/offers';
@@ -11,7 +11,18 @@ export default {
       id: flatId
     });
   },
-  delete: flatId => {
-    return axios.delete(url + '/' + flatId);
+  put: data => {
+    return put(url, {
+      sourceUserId: data.sourceUserId,
+      flatId: data.flatId,
+      created: data.created
+    });
+  },
+  delete: data => {
+    return axios.delete(url, {
+      sourceUserId: data.sourceUserId,
+      flatId: data.flatId,
+      created: data.created
+    });
   }
 };
