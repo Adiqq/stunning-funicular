@@ -2,6 +2,13 @@
   margin: 40px;
 }
 
+img {
+  max-height: 100px;
+  max-width: 100px;
+  height: auto;
+  width: auto;
+}
+
 .wrapper input[type='text'],
 .wrapper select {
   width: 100%;

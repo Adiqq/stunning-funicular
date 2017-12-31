@@ -7,12 +7,12 @@ import { addFlat } from '../actions';
 import { bindActionCreators } from 'redux';
 
 const FlatEditContainer = ({ flat, submitToServer }) => (
-  <EditApartamentForm flat={flat} submitToServer={submitToServer} />
+  <EditApartamentForm initialValues={flat} submitToServer={submitToServer} />
 );
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    flat: getFlat(state.flats, ownProps.match.params.id)
+    flat: getFlat(state, ownProps.match.params.id)
   };
 };
 

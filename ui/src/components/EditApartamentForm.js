@@ -9,7 +9,9 @@ class EditApartamentForm extends Component {
     super(props);
     this.state = {
       counter: 0,
-      picturesToAdd: []
+      picturesToAdd: [],
+      picturesToDelete: [],
+      existingPictures: props.initialValues.Pictures
     };
   }
 
@@ -21,13 +23,30 @@ class EditApartamentForm extends Component {
   };
 
   deletePicture = number => {
-    let index = this.props.picturesToAdd.findIndex(
+    let index = this.state.picturesToAdd.findIndex(
       element => element === number
     );
-    this.props.picturesToAdd = [
-      ...this.props.picturesToAdd.slice(0, index),
-      ...this.props.picturesToAdd.slice(index + 1)
-    ];
+    this.setState({
+      ...this.state,
+      picturesToAdd: [
+        ...this.state.picturesToAdd.slice(0, index),
+        ...this.state.picturesToAdd.slice(index + 1)
+      ]
+    });
+  };
+
+  deleteExistingPicture = picture => {
+    let index = this.state.existingPictures.findIndex(
+      element => element.Filename === picture.Filename
+    );
+    this.setState({
+      ...this.state,
+      existingPictures: [
+        ...this.state.existingPictures.slice(0, index),
+        ...this.state.existingPictures.slice(index + 1)
+      ]
+    });
+    this.state.picturesToDelete = [...this.state.picturesToDelete, picture];
   };
 
   append = (form, fieldName, field) => {
@@ -38,19 +57,19 @@ class EditApartamentForm extends Component {
 
   onFormSubmit = data => {
     let formData = new FormData();
-    this.append(formData, 'city', data.city);
-    this.append(formData, 'street', data.street);
+    this.append(formData, 'city', data.City);
+    this.append(formData, 'street', data.Street);
     for (let i = 0; i < this.state.picturesToAdd.length; i++) {
       let pictureArray = data[`pictures${this.state.picturesToAdd[i]}`];
       let picture = pictureArray[0];
       this.append(formData, `pictures`, picture);
     }
-    this.append(formData, 'numberOfRooms', data.numberOfRooms);
-    this.append(formData, 'roomArea', data.roomArea);
-    this.append(formData, 'floor', data.floor);
-    this.append(formData, 'hasBalcony', data.hasBalcony || false);
-    this.append(formData, 'description', data.description);
-    this.append(formData, 'price', data.price);
+    this.append(formData, 'numberOfRooms', data.NumberOfRooms);
+    this.append(formData, 'roomArea', data.RoomArea);
+    this.append(formData, 'floor', data.Floor);
+    this.append(formData, 'hasBalcony', data.HasBalcony || false);
+    this.append(formData, 'description', data.Description);
+    this.append(formData, 'price', data.Price);
 
     this.props.submitToServer(formData);
   };
@@ -70,30 +89,30 @@ class EditApartamentForm extends Component {
 
         <div>
           <form onSubmit={handleSubmit(this.onFormSubmit)}>
-            <label htmlFor="city">Miasto</label>
+            <label htmlFor="City">Miasto</label>
             <Field
-              name="city"
+              name="City"
               component="input"
               type="text"
               placeholder="Miasto"
             />
 
-            <label htmlFor="street">Ulica</label>
+            <label htmlFor="Street">Ulica</label>
             <Field
-              name="street"
+              name="Street"
               component="input"
               type="text"
               placeholder="Ulica"
             />
 
-            <label htmlFor="numberOfRooms">Liczba pokoi</label>
-            <Field name="numberOfRooms" component="input" type="number" />
+            <label htmlFor="NumberOfRooms">Liczba pokoi</label>
+            <Field name="NumberOfRooms" component="input" type="number" />
 
-            <label htmlFor="roomArea">Powierzchnia mieszkania</label>
-            <Field name="roomArea" component="input" type="number" />
+            <label htmlFor="RoomArea">Powierzchnia mieszkania</label>
+            <Field name="RoomArea" component="input" type="number" />
 
-            <label htmlFor="floor">Piętro</label>
-            <Field name="floor" component="select">
+            <label htmlFor="Floor">Piętro</label>
+            <Field name="Floor" component="select">
               <option />
               <option value="0">{floorConverter(0)}</option>
               <option value="1">{floorConverter(1)}</option>
@@ -103,28 +122,49 @@ class EditApartamentForm extends Component {
               <option value="5">{floorConverter(5)}</option>
             </Field>
 
-            <label htmlFor="hasBalcony">Posiada balkon</label>
+            <label htmlFor="HasBalcony">Posiada balkon</label>
             <Field
-              name="hasBalcony"
-              id="hasBalcony"
+              name="HasBalcony"
+              id="HasBalcony"
               component="input"
               type="checkbox"
             />
 
-            <label htmlFor="description">Krótki opis tekstowy</label>
-            <Field name="description" component="input" type="textarea" />
+            <label htmlFor="Description">Krótki opis tekstowy</label>
+            <Field name="Description" component="input" type="textarea" />
 
-            <label htmlFor="price">Cena</label>
-            <Field name="price" component="input" type="number" />
+            <label htmlFor="Price">Cena</label>
+            <Field name="Price" component="input" type="number" />
+
+            {this.state.existingPictures.map(picture => (
+              <div key={picture.Filename}>
+                <label>{picture.Filename}</label>
+                <img
+                  src={`http://localhost:3001/uploads/${picture.Filename}`}
+                />
+                <button
+                  type="button"
+                  onClick={() => this.deleteExistingPicture(picture)}
+                >
+                  Usuń zdjęcie
+                </button>
+              </div>
+            ))}
 
             {this.state.picturesToAdd.map(pictureAdd => (
-              <div>
-                <label htmlFor="pictures">Zdjęcie</label>
+              <div key={pictureAdd}>
+                <label htmlFor={`pictures${pictureAdd}`}>Nowe zdjęcie</label>
                 <Field
                   name={`pictures${pictureAdd}`}
                   component="input"
                   type="file"
                 />
+                <button
+                  type="button"
+                  onClick={() => this.deletePicture(pictureAdd)}
+                >
+                  Usuń zdjęcie
+                </button>
               </div>
             ))}
 
