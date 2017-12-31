@@ -7,6 +7,9 @@ const multer = require('multer');
 const passport = require("passport");
 const db = new sqlite3.Database('db/db.sqlite3');
 
+const {check, validationResult} = require('express-validator/check');
+const {matchedData, sanitize} = require('express-validator/filter');
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/uploads')
@@ -217,7 +220,30 @@ router.get('/', passport.authenticate('basic', {session: false}),
 
 router.post('/',
     passport.authenticate('basic', {session: false}),
-    upload.array('pictures'), function (req, res, next) {
+    upload.array('pictures'), [
+        check('city').exists().withMessage('Miasto jest wymagane'),
+        check('street').exists().withMessage('Ulica jest wymagana'),
+        check('numberOfRooms').exists().withMessage('Liczba pokoi jest wymagana'),
+        check('numberOfRooms').exists().custom(value => parseInt(value) > 0).withMessage('Liczba pokoi musi być większa od 0'),
+        check('roomArea').exists().withMessage('Powierzchnia mieszkania jest wymagana'),
+        check('roomArea').exists().custom(value => parseInt(value) > 0).withMessage('Powierzchnia musi być większa od 0'),
+        check('floor').exists().withMessage('Piętro jest wymagane'),
+        check('floor').exists().custom(value => parseInt(value) >= 0 && parseInt(value) <= 5).withMessage('Nieprawidłowe piętro'),
+        check('hasBalcony').exists().withMessage('Podaj informację o obecności balkonu'),
+        check('description').exists().withMessage('Opis jest wymagany'),
+        check('price').exists().withMessage('Cena jest wymagana'),
+        check('price').exists().custom(value => parseInt(value) > 0).withMessage('Cena musi być wyższa od 0')
+    ],
+    function (req, res, next) {
+        if(!req.files.length){
+            return res.status(422).send('Zdjęcie jest wymagane')
+        }
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log(errors.mapped());
+            return res.status(422).json({errors: errors.mapped()});
+        }
+        const flat = matchedData(req);
         //console.log(req);
         let flatId = uuidv4();
         let userId = req.user.Id;
@@ -228,14 +254,14 @@ router.post('/',
     $hasBalcony, $description, $price)`, {
             $id: flatId,
             $userId: userId,
-            $city: req.body.city,
-            $street: req.body.street,
-            $numOfRooms: req.body.numberOfRooms,
-            $roomArea: req.body.roomArea,
-            $floor: parseInt(req.body.floor),
-            $hasBalcony: req.body.hasBalcony === 'true' ? 1 : 0,
-            $description: req.body.description,
-            $price: req.body.price
+            $city: flat.city,
+            $street: flat.street,
+            $numOfRooms: flat.numberOfRooms,
+            $roomArea: flat.roomArea,
+            $floor: parseInt(flat.floor),
+            $hasBalcony: flat.hasBalcony === 'true' ? 1 : 0,
+            $description: flat.description,
+            $price: flat.price
         });
         for (let i = 0; i < req.files.length; i++) {
             let pictureId = uuidv4();

@@ -2,8 +2,8 @@
   margin: 40px;
 }
 
-input[type='text'],
-select {
+.wrapper input[type='text'],
+.wrapper select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -13,7 +13,7 @@ select {
   box-sizing: border-box;
 }
 
-input[type='number'] {
+.wrapper input[type='number'] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -23,7 +23,7 @@ input[type='number'] {
   box-sizing: border-box;
 }
 
-input[type='checkbox'] {
+.wrapper input[type='checkbox'] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -33,7 +33,7 @@ input[type='checkbox'] {
   box-sizing: border-box;
 }
 
-input[type='file'] {
+.wrapper input[type='file'] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -42,7 +42,7 @@ input[type='file'] {
   border-radius: 4px;
   box-sizing: border-box;
 }
-textarea {
+.wrapper input[type='textarea'] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -52,7 +52,7 @@ textarea {
   box-sizing: border-box;
 }
 
-input[type='submit'] {
+.wrapper input[type='submit'] {
   width: 100%;
   background-color: #4caf50;
   color: white;
@@ -63,6 +63,6 @@ input[type='submit'] {
   cursor: pointer;
 }
 
-input[type='submit']:hover {
+.wrapper input[type='submit']:hover {
   background-color: #45a049;
 }
