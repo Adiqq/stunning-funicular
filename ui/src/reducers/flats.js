@@ -2,6 +2,7 @@ import { RECEIVE_FLATS } from '../constants/ActionTypes';
 import { denormalize } from 'normalizr';
 import { flatList } from '../api/schema';
 import { get } from 'lodash';
+import { getId } from './user';
 
 const flatsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -30,8 +31,23 @@ export const getFlat = (state, id) => {
   return flat;
 };
 
+export const mapFlats = state => {
+  let userId = getId(state);
+  return getFlats(state).map(flat => {
+    flat.isOwnFlat = flat.UserId === userId;
+    return flat;
+  });
+};
+
+export const getNotSoldOrOwnFlats = state => {
+  return mapFlats(state).filter(flat => {
+    if (flat.Sold && !flat.isOwnFlat) return false;
+    return true;
+  });
+};
+
 export const getVisibleFlats = state => {
-  return getFlats(state).filter(flat => {
+  return getNotSoldOrOwnFlats(state).filter(flat => {
     const minPrice = get(state, 'filters.priceRange.min');
     const maxPrice = get(state, 'filters.priceRange.max');
     if (minPrice && flat.Price < minPrice) return false;

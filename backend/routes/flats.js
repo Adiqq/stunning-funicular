@@ -29,23 +29,42 @@ router.get('/offers', passport.authenticate('basic', {session: false}),
             if (err) {
                 res.status(400).send('Error on selecting flats');
                 console.error(err);
-            } else{
+            } else if (!rows.length) {
+                res.json(offers);
+            }
+            else {
                 counter = rows.length;
-                for(let i = 0; i < rows.length; i++) {
+                for (let i = 0; i < rows.length; i++) {
                     db.get(`SELECT SourceUserId, FlatId, Created, Status FROM FlatOffers
-                WHERE FlatId = $flatId`, {
-                        $flatId: row[i].Id
+                WHERE FlatId = $flatId AND Status = 'Pending'`, {
+                        $flatId: rows[i].Id
                     }, (err, row) => {
-                        counter--;
                         if (err) {
+                            counter--;
                             console.error(err);
+                        } else if (!row) {
+                            counter--;
+                            if (counter === 0) {
+                                res.json(offers);
+                            }
                         }
-                        if (row) {
-                            offers.push(row);
+                        else {
+                            db.get('SELECT Id, PhoneNumber FROM Users WHERE Id = $id', {
+                                $id: row.SourceUserId
+                            }, (err, user) => {
+                                counter--;
+                                if (err) console.error(err);
+                                if (user) {
+                                    row.User = user;
+                                    offers.push(row);
+                                }
+                                if (counter === 0) {
+                                    res.json(offers);
+                                }
+
+                            });
                         }
-                        if(counter === 0){
-                            res.json(offers);
-                        }
+
                     })
                 }
             }
@@ -91,6 +110,8 @@ router.post('/offers', passport.authenticate('basic', {session: false}),
                         }
                     })
                 }
+            } else {
+                res.status(404).send('Flat not found');
             }
         });
     });
@@ -163,13 +184,30 @@ router.get('/', passport.authenticate('basic', {session: false}),
         db.each(`SELECT Id, UserId, City, Street, NumberOfRooms, RoomArea, Floor, HasBalcony, Description, Price
     FROM Flats`, [], (err, row) => {
             row.HasBalcony = !!row.HasBalcony;
-            counter++;
+            let subCounter = 2;
+            counter += subCounter;
             db.all(`SELECT Id,FlatId,Filename,Filetype FROM Pictures WHERE FlatId = $flatId`, {
                 $flatId: row.Id
             }, (err, rows) => {
                 row.Pictures = rows;
-                flats.push(row);
+                subCounter--;
                 counter--;
+                if (subCounter === 0) {
+                    flats.push(row);
+                }
+                if (counter === 0) {
+                    res.send(flats);
+                }
+            });
+            db.all(`SELECT Status FROM FlatOffers WHERE FlatId = $flatId`, {
+                $flatId: row.Id
+            }, (err, rows) => {
+                row.Sold = rows.some(row => row.Status === 'Accepted');
+                subCounter--;
+                counter--;
+                if (subCounter === 0) {
+                    flats.push(row);
+                }
                 if (counter === 0) {
                     res.send(flats);
                 }

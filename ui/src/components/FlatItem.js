@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { floorConverter } from '../helpers/floors';
+import FlatItemButtons from './FlatItemButtons';
 
 const FlatItem = ({ flat, wantBuy }) => (
   <tr>
@@ -11,24 +13,14 @@ const FlatItem = ({ flat, wantBuy }) => (
         height="50"
       />
     </td>
+    <td>{flat.UserId}</td>
     <td>{flat.City}</td>
     <td>{flat.NumberOfRooms}</td>
     <td>{flat.RoomArea}</td>
-    <td>{flat.Floor}</td>
+    <td>{floorConverter(flat.Floor)}</td>
     <td>{flat.HasBalcony ? 'Tak' : 'Nie'}</td>
     <td>{flat.Price}</td>
-    <td>
-      <Link to={'/apartament/details/' + flat.Id}>
-        <button>Szczegóły</button>
-      </Link>
-      <button
-        onClick={() => {
-          wantBuy(flat.Id);
-        }}
-      >
-        Chcę kupić
-      </button>
-    </td>
+    <FlatItemButtons flat={flat} wantBuy={wantBuy} />
   </tr>
 );
 
@@ -38,7 +30,7 @@ FlatItem.propTypes = {
     City: PropTypes.string.isRequired,
     NumberOfRooms: PropTypes.number.isRequired,
     RoomArea: PropTypes.number.isRequired,
-    Floor: PropTypes.string.isRequired,
+    Floor: PropTypes.number.isRequired,
     HasBalcony: PropTypes.bool.isRequired,
     Price: PropTypes.number.isRequired,
     Pictures: PropTypes.arrayOf(
@@ -46,7 +38,9 @@ FlatItem.propTypes = {
         Id: PropTypes.string.isRequired,
         Filename: PropTypes.string.isRequired
       })
-    ).isRequired
+    ).isRequired,
+    Sold: PropTypes.bool.isRequired,
+    isOwnFlat: PropTypes.bool.isRequired
   }).isRequired,
   wantBuy: PropTypes.func.isRequired
 };

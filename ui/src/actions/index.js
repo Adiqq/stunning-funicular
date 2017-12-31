@@ -78,19 +78,45 @@ export const getAllFlatOffers = () => dispatch => {
   });
 };
 
-const deleteFlatOfferSuccess = flatId => ({
+const deleteFlatOfferSuccess = message => ({
   type: types.DELETE_FLAT_OFFER_SUCCESS,
-  flatId
+  message
 });
-const deleteFlatOfferError = flatId => ({
+const deleteFlatOfferError = message => ({
   type: types.DELETE_FLAT_OFFER_ERROR,
-  flatId
+  message
 });
 
-export const deleteFlatOffer = flatId => dispatch => {
-  flatOffers.delete(flatId).then(response => {
-    dispatch(deleteFlatOfferSuccess(flatId));
-  });
+export const deleteFlatOffer = message => dispatch => {
+  flatOffers
+    .delete(message)
+    .then(response => {
+      dispatch(deleteFlatOfferSuccess(message));
+    })
+    .catch(reason => {
+      dispatch(deleteFlatOfferError(message));
+    });
+};
+
+const acceptFlatOfferSuccess = message => ({
+  type: types.ACCEPT_FLAT_OFFER_SUCCESS,
+  message
+});
+
+const acceptFlatOfferError = message => ({
+  type: types.ACCEPT_FLAT_OFFER_ERROR,
+  message
+});
+
+export const acceptFlatOffer = message => dispatch => {
+  flatOffers
+    .put(message)
+    .then(result => {
+      dispatch(acceptFlatOfferSuccess(message));
+    })
+    .catch(reason => {
+      dispatch(acceptFlatOfferError(message));
+    });
 };
 
 const loginUserSuccess = user => ({

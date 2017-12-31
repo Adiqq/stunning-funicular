@@ -34,12 +34,14 @@ class FlatContainer extends Component {
           <thead>
             <tr>
               <th>Zdjęcie</th>
+              <th>Użytkownik</th>
               <th>Miasto</th>
               <th>Liczba pokoi</th>
               <th>Powierzchnia</th>
               <th>Piętro</th>
               <th>Posiada balkon</th>
               <th>Cena</th>
+              <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -62,7 +64,7 @@ FlatContainer.propTypes = {
       Street: PropTypes.string.isRequired,
       NumberOfRooms: PropTypes.number.isRequired,
       RoomArea: PropTypes.number.isRequired,
-      Floor: PropTypes.string.isRequired,
+      Floor: PropTypes.number.isRequired,
       HasBalcony: PropTypes.bool.isRequired,
       Description: PropTypes.string.isRequired,
       Price: PropTypes.number.isRequired,
@@ -71,7 +73,8 @@ FlatContainer.propTypes = {
           Id: PropTypes.string.isRequired,
           Filename: PropTypes.string.isRequired
         })
-      ).isRequired
+      ).isRequired,
+      Sold: PropTypes.bool.isRequired
     })
   ).isRequired,
   wantBuy: PropTypes.func.isRequired,

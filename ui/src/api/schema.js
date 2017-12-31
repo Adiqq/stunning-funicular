@@ -32,11 +32,10 @@ export const flatList = [flat];
 export const flatOffer = new schema.Entity(
   'FlatOffers',
   {
-    Source: user,
-    Target: user,
+    User: user,
     Flat: flat
   },
-  { idAttribute: 'Id' }
+  { idAttribute: value => value.SourceUserId + value.FlatId + value.Created }
 );
 
 export const flatOfferList = [flatOffer];

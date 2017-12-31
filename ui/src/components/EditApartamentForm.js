@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { post } from 'axios/index';
+import { floorConverter } from '../helpers/floors';
 
 const EditApartamentForm = props => {
   const {
@@ -63,12 +64,12 @@ const EditApartamentForm = props => {
 
           <Field name="floor" component="select">
             <option />
-            <option value="0">Parter</option>
-            <option value="1">1 piętro</option>
-            <option value="2">2 piętro</option>
-            <option value="3">3 piętro</option>
-            <option value="4">4 piętro</option>
-            <option value="5">5 piętro lub wyższe</option>
+            <option value="0">{floorConverter(0)}</option>
+            <option value="1">{floorConverter(1)}</option>
+            <option value="2">{floorConverter(2)}</option>
+            <option value="3">{floorConverter(3)}</option>
+            <option value="4">{floorConverter(4)}</option>
+            <option value="5">{floorConverter(5)}</option>
           </Field>
 
           <label htmlFor="hasBalcony">Posiada balkon</label>

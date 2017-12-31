@@ -9,11 +9,23 @@ import MainMenuAdmin from './MainMenuAdmin';
 const MainMenu = ({ role }) => {
   switch (role) {
     case 'User':
-      return <MainMenuUser />;
+      return (
+        <nav>
+          <MainMenuUser />
+        </nav>
+      );
     case 'Administrator':
-      return <MainMenuAdmin />;
+      return (
+        <nav>
+          <MainMenuAdmin />
+        </nav>
+      );
     default:
-      return <MainMenuGuest />;
+      return (
+        <nav>
+          <MainMenuGuest />
+        </nav>
+      );
   }
 };
 

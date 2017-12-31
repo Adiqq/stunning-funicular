@@ -1,6 +1,7 @@
 import { RECEIVE_FLAT_OFFERS } from '../constants/ActionTypes';
 import { denormalize } from 'normalizr';
 import { flatOfferList } from '../api/schema';
+import { get } from 'lodash';
 
 const flatOffersReducer = (state = {}, action) => {
   switch (action.type) {
@@ -19,6 +20,11 @@ export const getMessages = state => {
   return state && state.FlatOffers
     ? denormalize(state.Result, flatOfferList, state)
     : [];
+};
+
+export const getMessageCount = state => {
+  let offers = get(state, 'flatOffers.Result');
+  return offers ? offers.length : 0;
 };
 
 export default flatOffersReducer;

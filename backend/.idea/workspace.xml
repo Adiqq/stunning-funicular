@@ -2,11 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cf98830-6435-4c25-b4a8-3f647e3e1242" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/FlatItemButtons.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/helpers/floors.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/routes/flats.js" afterPath="$PROJECT_DIR$/routes/flats.js" />
       <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/actions/index.js" afterPath="$PROJECT_DIR$/../ui/src/actions/index.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/api/flatOffers.js" afterPath="$PROJECT_DIR$/../ui/src/api/flatOffers.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/api/schema.js" afterPath="$PROJECT_DIR$/../ui/src/api/schema.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" afterPath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/FlatItem.js" afterPath="$PROJECT_DIR$/../ui/src/components/FlatItem.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenu.css" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenu.css" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenu.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenu.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenuAdmin.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuAdmin.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenuUser.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuUser.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatDetailsContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatDetailsContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/MessagesContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/MessagesContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/PrivateRoute.js" afterPath="$PROJECT_DIR$/../ui/src/containers/PrivateRoute.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/flatOffers.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/flatOffers.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/flats.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/flats.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/user.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/user.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,8 +40,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="44" column="34" lean-forward="true" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
+            <state relative-caret-position="748">
+              <caret line="44" column="34" lean-forward="false" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -33,8 +50,8 @@
       <file leaf-file-name="flats.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/flats.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="78" column="68" lean-forward="false" selection-start-line="78" selection-start-column="68" selection-end-line="78" selection-end-column="68" />
+            <state relative-caret-position="442">
+              <caret line="200" column="15" lean-forward="false" selection-start-line="200" selection-start-column="15" selection-end-line="200" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -43,7 +60,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
+            <state relative-caret-position="1938">
               <caret line="114" column="24" lean-forward="true" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
               <folding />
             </state>
@@ -157,6 +174,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -194,7 +212,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -247,11 +264,12 @@
       <workItem from="1514392792891" duration="9596000" />
       <workItem from="1514477849858" duration="2316000" />
       <workItem from="1514673622190" duration="11589000" />
+      <workItem from="1514736827786" duration="5123000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59604000" />
+    <option name="totallyTimeSpent" value="64727000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1370" height="739" extended-state="6" />
@@ -260,13 +278,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -293,7 +311,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app.js</url>
           <line>94</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
@@ -678,15 +695,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="44" column="34" lean-forward="true" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
+        <state relative-caret-position="748">
+          <caret line="44" column="34" lean-forward="false" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
+        <state relative-caret-position="1938">
           <caret line="114" column="24" lean-forward="true" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
           <folding />
         </state>
@@ -694,8 +711,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/flats.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="78" column="68" lean-forward="false" selection-start-line="78" selection-start-column="68" selection-end-line="78" selection-end-column="68" />
+        <state relative-caret-position="442">
+          <caret line="200" column="15" lean-forward="false" selection-start-line="200" selection-start-column="15" selection-end-line="200" selection-end-column="15" />
           <folding />
         </state>
       </provider>

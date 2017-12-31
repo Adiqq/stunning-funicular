@@ -13,16 +13,16 @@ export default {
   },
   put: data => {
     return put(url, {
-      sourceUserId: data.sourceUserId,
-      flatId: data.flatId,
-      created: data.created
+      sourceUserId: data.User.Id,
+      flatId: data.FlatId,
+      created: data.Created
     });
   },
   delete: data => {
     return axios.delete(url, {
-      sourceUserId: data.sourceUserId,
-      flatId: data.flatId,
-      created: data.created
+      sourceUserId: data.User.Id,
+      flatId: data.FlatId,
+      created: data.Created
     });
   }
 };

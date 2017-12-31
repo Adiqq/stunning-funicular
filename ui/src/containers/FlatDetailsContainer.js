@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getFlat } from '../reducers/flats';
 import { connect } from 'react-redux';
+import { floorConverter } from '../helpers/floors';
 
 const FlatDetailsContainer = ({ flat }) => {
   console.log(flat);
@@ -12,7 +13,7 @@ const FlatDetailsContainer = ({ flat }) => {
       <p>{flat.Street}</p>
       <p>{flat.NumberOfRooms}</p>
       <p>{flat.RoomArea}</p>
-      <p>{flat.Floor}</p>
+      <p>{floorConverter(flat.Floor)}</p>
       <p>{flat.HasBalcony ? 'Tak' : 'Nie'}</p>
       <p>{flat.Description}</p>
       <p>{flat.Price}</p>
@@ -36,7 +37,7 @@ FlatDetailsContainer.propTypes = {
     Street: PropTypes.string.isRequired,
     NumberOfRooms: PropTypes.number.isRequired,
     RoomArea: PropTypes.number.isRequired,
-    Floor: PropTypes.string.isRequired,
+    Floor: PropTypes.number.isRequired,
     HasBalcony: PropTypes.bool.isRequired,
     Description: PropTypes.string.isRequired,
     Price: PropTypes.number.isRequired,

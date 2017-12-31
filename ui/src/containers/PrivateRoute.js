@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
-import { isLoggedIn } from '../reducers/user';
+import { getId } from '../reducers/user';
 
 const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   <Route
@@ -22,7 +22,7 @@ const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
 );
 
 const mapStateToProps = state => ({
-  isLoggedIn: isLoggedIn(state)
+  isLoggedIn: getId(state)
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

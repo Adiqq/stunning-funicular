@@ -15,7 +15,7 @@ const userReducer = (state = {}, action) => {
   }
 };
 
-export const isLoggedIn = state => {
+export const getId = state => {
   return get(state, 'user.Id');
 };
 
