@@ -5,36 +5,49 @@ import { connect } from 'react-redux';
 import { floorConverter } from '../helpers/floors';
 import { getAllFlats } from '../actions';
 import { ReadOnlyInputField } from '../components/ReadOnlyInputField';
+import { baseUrl } from '../constants/Config';
 
 class FlatDetailsContainer extends Component {
   componentDidMount() {
     this.props.getAllFlats();
   }
+
   render() {
     const { flat } = this.props;
     console.log(flat);
     if (!flat) return null;
     return (
-      <div>
-        <ReadOnlyInputField label="Miasto" value={flat.City} />
-        <ReadOnlyInputField label="Ulica" value={flat.Street} />
-        <ReadOnlyInputField label="Pokoje" value={flat.NumberOfRooms} />
-        <ReadOnlyInputField label="Powierzchnia" value={flat.RoomArea} />
-        <ReadOnlyInputField label="Piętro" value={floorConverter(flat.Floor)} />
-        <ReadOnlyInputField
-          label="Balkon"
-          value={flat.HasBalcony ? 'Tak' : 'Nie'}
-        />
-        <ReadOnlyInputField label="Opis" value={flat.Description} />
-        <ReadOnlyInputField label="Cena" value={flat.Price} />
-        {flat.Pictures.map(picture => (
-          <p key={picture.Id}>
-            <img
-              src={'http://localhost:3001/uploads/' + picture.Filename}
-              alt={picture.Filename}
-            />
-          </p>
-        ))}
+      <div className="columns">
+        <div className="column">
+          <ReadOnlyInputField label="Miasto" value={flat.City} />
+          <ReadOnlyInputField label="Ulica" value={flat.Street} />
+          <ReadOnlyInputField label="Pokoje" value={flat.NumberOfRooms} />
+          <ReadOnlyInputField label="Powierzchnia" value={flat.RoomArea} />
+          <ReadOnlyInputField
+            label="Piętro"
+            value={floorConverter(flat.Floor)}
+          />
+          <ReadOnlyInputField
+            label="Balkon"
+            value={flat.HasBalcony ? 'Tak' : 'Nie'}
+          />
+          <ReadOnlyInputField label="Opis" value={flat.Description} />
+          <ReadOnlyInputField label="Cena" value={flat.Price} />
+        </div>
+        <div className="column">
+          {flat.Pictures.map(picture => (
+            <div className="card" key={picture.Id}>
+              <div className="card-image">
+                <figure className="image">
+                  <img
+                    src={`${baseUrl}uploads/${picture.Filename}`}
+                    alt={picture.Filename}
+                  />
+                </figure>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

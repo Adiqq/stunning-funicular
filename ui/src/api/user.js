@@ -1,6 +1,7 @@
 import { get, post, put } from 'axios/index';
 import * as axios from 'axios';
-const url = 'http://localhost:3001/users';
+import { baseUrl } from '../constants/Config';
+const url = `${baseUrl}users`;
 export default {
   login: token => {
     axios.defaults.headers.common['Authorization'] = token;

@@ -4,38 +4,20 @@ import { Field, reduxForm } from 'redux-form';
 import { login } from '../actions';
 import { connect } from 'react-redux';
 import { FormNotification } from '../components/FormNotification';
+import { EmailField } from '../components/EmailField';
+import { email, required } from '../helpers/validation';
+import { PasswordField } from '../components/PasswordField';
 
 let LoginContainer = ({ handleSubmit, onLogin, submitting, error }) => (
   <form onSubmit={handleSubmit(onLogin)}>
     <FormNotification error={error} />
-    <div className="field">
-      <p className="control has-icons-left has-icons-right">
-        <Field
-          className="input"
-          name="email"
-          component="input"
-          type="email"
-          placeholder="Email"
-        />
-        <span className="icon is-small is-left">
-          <i className="fa fa-envelope" />
-        </span>
-      </p>
-    </div>
-    <div className="field">
-      <p className="control has-icons-left">
-        <Field
-          className="input"
-          name="password"
-          component="input"
-          type="password"
-          placeholder="Password"
-        />
-        <span className="icon is-small is-left">
-          <i className="fa fa-lock" />
-        </span>
-      </p>
-    </div>
+    <Field name="email" component={EmailField} validate={[required, email]} />
+    <Field
+      name="password"
+      component={PasswordField}
+      placeholder="Hasło"
+      validate={[required]}
+    />
     <div className="field">
       <p className="control">
         <input

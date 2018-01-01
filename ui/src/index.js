@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
 import { render } from 'react-dom';
@@ -9,6 +8,7 @@ import * as action from './actions';
 import history from './helpers/history';
 import * as axios from 'axios/index';
 import { getAllFlatOffers } from './actions';
+import { getAllFlats } from './actions';
 
 const token = localStorage.getItem('token');
 const userSerialized = localStorage.getItem('user');
@@ -22,6 +22,7 @@ if (userSerialized) {
 }
 const store = configureStore(state);
 if (userSerialized) {
+  store.dispatch(getAllFlats());
   store.dispatch(getAllFlatOffers());
 }
 render(

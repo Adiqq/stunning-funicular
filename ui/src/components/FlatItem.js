@@ -8,9 +8,12 @@ const FlatItem = ({ flat, wantBuy }) => (
   <tr>
     <td>
       <img
-        alt={flat.Pictures[0].Filename}
-        src={'http://localhost:3001/uploads/' + flat.Pictures[0].Filename}
-        height="50"
+        alt={flat.Pictures.length ? flat.Pictures[0].Filename : ''}
+        src={
+          'http://localhost:3001/uploads/' +
+          (flat.Pictures.length ? flat.Pictures[0].Filename : '')
+        }
+        width="128"
       />
     </td>
     <td>{flat.UserId}</td>

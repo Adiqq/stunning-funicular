@@ -1,7 +1,8 @@
 import { get, post, put } from 'axios/index';
 import * as axios from 'axios';
+import { baseUrl } from '../constants/Config';
 
-const url = 'http://localhost:3001/flats/offers';
+const url = `${baseUrl}flats/offers`;
 export default {
   get: () => {
     return get(url);
@@ -20,9 +21,11 @@ export default {
   },
   delete: data => {
     return axios.delete(url, {
-      sourceUserId: data.User.Id,
-      flatId: data.FlatId,
-      created: data.Created
+      data: {
+        sourceUserId: data.SourceUserId,
+        flatId: data.FlatId,
+        created: data.Created
+      }
     });
   }
 };

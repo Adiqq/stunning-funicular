@@ -5,12 +5,14 @@ import filters from './filters';
 import flatOffers from './flatOffers';
 import user from './user';
 import users from './users';
+import notifications from './notifications';
 
 const rootReducer = combineReducers({
   filters,
   flats,
   flatOffers,
   form: formReducer,
+  notifications,
   user,
   users
 });

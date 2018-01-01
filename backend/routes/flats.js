@@ -163,7 +163,7 @@ router.delete('/offers', passport.authenticate('basic', {session: false}),
                 UPDATE FlatOffers
                 SET Status = 'Rejected'
                 WHERE SourceUserId = $sourceUserId AND
-                FlatId = $flatId AND CREATED = $created`, {
+                FlatId = $flatId AND Created = $created`, {
                     $sourceUserId: req.body.sourceUserId,
                     $flatId: req.body.flatId,
                     $created: req.body.created
@@ -199,23 +199,25 @@ router.get('/', passport.authenticate('basic', {session: false}),
                     flats.push(row);
                 }
                 if (counter === 0) {
-                    res.send(flats);
+                    return res.send(flats);
                 }
             });
-            db.all(`SELECT Status FROM FlatOffers WHERE FlatId = $flatId`, {
+            db.all(`SELECT SourceUserId,Status FROM FlatOffers WHERE FlatId = $flatId`, {
                 $flatId: row.Id
             }, (err, rows) => {
                 row.Sold = rows.some(row => row.Status === 'Accepted');
+                row.Pending = rows.some(row => row.SourceUserId === req.user.Id && row.Status === 'Pending');
                 subCounter--;
                 counter--;
                 if (subCounter === 0) {
                     flats.push(row);
                 }
                 if (counter === 0) {
-                    res.send(flats);
+                    return res.send(flats);
                 }
             })
         });
+
     });
 
 router.post('/',
@@ -265,7 +267,7 @@ router.post('/',
             $price: flat.price
         }, (err) => {
             counter--;
-            if(counter === 0){
+            if (counter === 0) {
                 res.send('ok');
             }
         });
@@ -279,7 +281,7 @@ router.post('/',
                 $filetype: req.files[i].mimetype
             }, (err) => {
                 counter--;
-                if(counter === 0){
+                if (counter === 0) {
                     res.send('ok');
                 }
             });
@@ -326,7 +328,7 @@ router.put('/',
                     return res.status(401).send('Not owner of flat');
                 }
                 let picturesToDelete = [];
-                if(req.body.picturesToDelete) {
+                if (req.body.picturesToDelete) {
                     picturesToDelete = req.body.picturesToDelete.split(',');
                 }
                 let counter = req.files.length + picturesToDelete.length + 1;
@@ -346,7 +348,7 @@ router.put('/',
                     $price: flat.price
                 }, err => {
                     counter--;
-                    if(counter === 0){
+                    if (counter === 0) {
                         res.send('ok');
                     }
                 });
@@ -360,7 +362,7 @@ router.put('/',
                         $filetype: req.files[i].mimetype
                     }, err => {
                         counter--;
-                        if(counter === 0){
+                        if (counter === 0) {
                             res.send('ok');
                         }
                     });
@@ -373,7 +375,7 @@ router.put('/',
                         $flatId: flat.flatId
                     }, err => {
                         counter--;
-                        if(counter === 0){
+                        if (counter === 0) {
                             res.send('ok');
                         }
                     });

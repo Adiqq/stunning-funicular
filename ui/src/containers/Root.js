@@ -14,11 +14,15 @@ import PrivateRoute from './PrivateRoute';
 import UserContainer from './UserContainer';
 import UserDetailsContainer from './UserDetailsContainer';
 import './Root.css';
+import NotificationContainer from './NotificationContainer';
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <div className="site">
       <MainMenu />
+
+      <NotificationContainer />
+
       <section className="section site-content">
         <div className="container">
           <Switch>

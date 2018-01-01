@@ -7,14 +7,16 @@ import * as schema from '../api/schema';
 import history from '../helpers/history';
 import { get, mapValues } from 'lodash';
 import { SubmissionError } from 'redux-form';
+import { mapErrors } from '../helpers/validation';
+import uuidv4 from 'uuid/v4';
 const receiveFlats = flats => ({
   type: types.RECEIVE_FLATS,
   flats
 });
 
-const addFlatSuccess = flat => ({
+const addFlatSuccess = message => ({
   type: types.ADD_FLAT_SUCCESS,
-  flat
+  message
 });
 const addFlatError = () => ({
   type: types.ADD_FLAT_ERROR
@@ -29,16 +31,22 @@ export const addFlat = flat => dispatch => {
   let promise = flats.post(flat);
   promise
     .then(response => {
-      dispatch(addFlatSuccess(response.data));
+      dispatch(
+        addFlatSuccess({
+          id: uuidv4(),
+          message: 'Dodano mieszkanie'
+        })
+      );
+      history.path('/');
     })
     .catch(reason => {
       dispatch(addFlatError());
     });
   return promise;
 };
-const updateFlatSuccess = flat => ({
+const updateFlatSuccess = message => ({
   type: types.UPDATE_FLAT_SUCCESS,
-  flat
+  message
 });
 const updateFlatError = flat => ({
   type: types.UPDATE_FLAT_ERROR,
@@ -49,7 +57,12 @@ export const updateFlat = flat => dispatch => {
   let promise = flats.put(flat);
   promise
     .then(response => {
-      dispatch(updateFlatSuccess(response.data));
+      dispatch(
+        updateFlatSuccess({
+          id: uuidv4(),
+          message: 'Zapisano mieszkanie'
+        })
+      );
     })
     .catch(reason => {
       dispatch(updateFlatError(reason));
@@ -77,20 +90,37 @@ export const balconyFilterChange = balcony => ({
   balcony
 });
 
-const flatBuyOfferSuccess = flat => ({
+const flatBuyOfferSuccess = message => ({
   type: types.FLAT_BUY_OFFER_SUCCESS,
-  flat
+  message
 });
-const flatBuyOfferError = () => ({
-  type: types.FLAT_BUY_OFFER_ERROR
+const flatBuyOfferError = message => ({
+  type: types.FLAT_BUY_OFFER_ERROR,
+  message
 });
 
 export const wantBuy = flatId => dispatch => {
   console.log('wantbuy');
-  flatOffers.post(flatId).then(response => {
-    console.log(response);
-    dispatch(flatBuyOfferSuccess(flatId));
-  });
+  flatOffers
+    .post(flatId)
+    .then(response => {
+      console.log(response);
+      dispatch(
+        flatBuyOfferSuccess({
+          id: uuidv4(),
+          message: 'Złożono ofertę kupna dla wybranego mieszkania'
+        })
+      );
+      getAllFlats()(dispatch);
+    })
+    .catch(reason => {
+      dispatch(
+        flatBuyOfferError({
+          id: uuidv4(),
+          message: 'Nie udało się złożyć oferty kupna'
+        })
+      );
+    });
 };
 
 const receiveFlatOffers = offers => ({
@@ -105,11 +135,11 @@ export const getAllFlatOffers = () => dispatch => {
 };
 
 const deleteFlatOfferSuccess = message => ({
-  type: types.DELETE_FLAT_OFFER_SUCCESS,
+  type: types.REJECT_FLAT_OFFER_SUCCESS,
   message
 });
 const deleteFlatOfferError = message => ({
-  type: types.DELETE_FLAT_OFFER_ERROR,
+  type: types.REJECT_FLAT_OFFER_ERROR,
   message
 });
 
@@ -117,10 +147,21 @@ export const deleteFlatOffer = message => dispatch => {
   flatOffers
     .delete(message)
     .then(response => {
-      dispatch(deleteFlatOfferSuccess(message));
+      dispatch(
+        deleteFlatOfferSuccess({
+          id: uuidv4(),
+          message: 'Odrzucono ofertę'
+        })
+      );
+      getAllFlatOffers()(dispatch);
     })
     .catch(reason => {
-      dispatch(deleteFlatOfferError(message));
+      dispatch(
+        deleteFlatOfferError({
+          id: uuidv4(),
+          message: 'Nie udało się odrzucić oferty'
+        })
+      );
     });
 };
 
@@ -138,10 +179,21 @@ export const acceptFlatOffer = message => dispatch => {
   flatOffers
     .put(message)
     .then(result => {
-      dispatch(acceptFlatOfferSuccess(message));
+      dispatch(
+        acceptFlatOfferSuccess({
+          id: uuidv4(),
+          message: 'Zaakceptowano ofertę'
+        })
+      );
+      getAllFlatOffers()(dispatch);
     })
     .catch(reason => {
-      dispatch(acceptFlatOfferError(message));
+      dispatch(
+        acceptFlatOfferError({
+          id: uuidv4(),
+          message: 'Nie udało się zaakceptować oferty'
+        })
+      );
     });
 };
 
@@ -174,20 +226,29 @@ export const login = data => dispatch => {
     });
 };
 
-const registerUserSuccess = () => ({
-  type: types.REGISTER_USER_SUCCESS
+const registerUserSuccess = message => ({
+  type: types.REGISTER_USER_SUCCESS,
+  message
 });
 const registerUserError = () => ({
   type: types.REGISTER_USER_ERROR
 });
 export const register = data => dispatch => {
-  users
+  data.phoneNumber = '+48' + data.phoneNumber;
+  return users
     .register(data)
     .then(response => {
-      dispatch(registerUserSuccess());
+      dispatch(
+        registerUserSuccess({
+          id: uuidv4(),
+          message: `Zarejestrowano użytkownika ${data.email}`
+        })
+      );
+      history.push('/login');
     })
     .catch(reason => {
       dispatch(registerUserError());
+      mapErrors(reason);
     });
 };
 
@@ -199,13 +260,13 @@ export const signout = () => {
   };
 };
 
-const changePasswordSuccess = user => ({
-  types: types.CHANGE_PASSWORD_SUCCESS,
-  user
+const changePasswordSuccess = message => ({
+  type: types.CHANGE_PASSWORD_SUCCESS,
+  message
 });
-const changePasswordError = user => ({
-  types: types.CHANGE_PASSWORD_ERROR,
-  user
+const changePasswordError = message => ({
+  type: types.CHANGE_PASSWORD_ERROR,
+  message
 });
 
 export const changePassword = (user, data) => dispatch => {
@@ -215,31 +276,52 @@ export const changePassword = (user, data) => dispatch => {
       password: data.password
     })
     .then(result => {
-      dispatch(changePasswordSuccess(user));
+      dispatch(
+        changePasswordSuccess({
+          id: uuidv4(),
+          message: 'Zmieniono hasło'
+        })
+      );
     })
     .catch(reason => {
-      dispatch(changePasswordError(user));
+      dispatch(
+        changePasswordError({
+          id: uuidv4(),
+          message: 'Nie udało się zmienić hasła'
+        })
+      );
     });
 };
 
-const deleteUserSuccess = user => ({
+const deleteUserSuccess = message => ({
   type: types.DELETE_USER_SUCCESS,
-  user
+  message
 });
 
-const deleteUserError = user => ({
+const deleteUserError = message => ({
   type: types.DELETE_USER_ERROR,
-  user
+  message
 });
 
 export const deleteUser = user => dispatch => {
   users
     .deleteUser(user.Id)
     .then(result => {
-      dispatch(deleteUserSuccess(user));
+      dispatch(
+        deleteUserSuccess({
+          id: uuidv4(),
+          message: `Usunięto użytkownika ${user.Id}`
+        })
+      );
+      history.push('/users');
     })
     .catch(reason => {
-      dispatch(deleteUserError(user));
+      dispatch(
+        deleteUserError({
+          id: uuidv4(),
+          message: 'Nie udało się usunąć użytkownika'
+        })
+      );
     });
 };
 
@@ -253,4 +335,22 @@ export const getAllUsers = () => dispatch => {
     console.log(normalize(result.data, schema.userList));
     dispatch(receiveUsers(normalize(result.data, schema.userList)));
   });
+};
+
+export const removeSuccessNotification = (id, timeout) => dispatch => {
+  setTimeout(() => {
+    dispatch({
+      type: types.REMOVE_SUCCESS_NOTIFICATION,
+      id
+    });
+  }, timeout);
+};
+
+export const removeErrorNotification = (id, timeout) => dispatch => {
+  setTimeout(() => {
+    dispatch({
+      type: types.REMOVE_ERROR_NOTIFICATION,
+      id
+    });
+  }, timeout);
 };

@@ -13,10 +13,7 @@ const usersReducer = (state = {}, action) => {
     case DELETE_USER_SUCCESS:
       return {
         ...state,
-        entities: state.entities.Users.filter(
-          user => user.Id !== action.user.Id
-        ),
-        result: state.result.filter(id => id !== action.user.Id)
+        result: state.result.filter(id => id !== action.message.id)
       };
     default:
       return state;

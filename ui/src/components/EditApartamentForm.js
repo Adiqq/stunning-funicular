@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { get, mapValues } from 'lodash';
 import { floorConverter } from '../helpers/floors';
-import { minValue0, number, required } from '../helpers/validation';
+import { mapErrors, minValue0, number, required } from '../helpers/validation';
 import { InputField } from './InputField';
 import { FormNotification } from './FormNotification';
+import { baseUrl } from '../constants/Config';
 
 class EditApartamentForm extends Component {
   constructor(props) {
@@ -83,177 +84,180 @@ class EditApartamentForm extends Component {
     );
     this.append(formData, 'flatId', get(this.props, 'initialValues.Id'));
 
-    return this.props.submitToServer(formData).catch(reason => {
-      const errors = get(reason, 'response.data.errors');
-      if (errors) {
-        const mapped = mapValues(errors, value => value.msg);
-        console.log(mapped);
-        throw new SubmissionError(mapped);
-      } else {
-        const error = get(reason, 'response.data');
-        const mapped = { _error: error };
-        console.log(mapped);
-        throw new SubmissionError(mapped);
-      }
-    });
+    return this.props.submitToServer(formData).catch(mapErrors);
   };
 
   render() {
     const { error, handleSubmit, submitting } = this.props;
     return (
-      <div>
-        <h1 className="title">Dodaj mieszkanie</h1>
-        <FormNotification error={error} />
-        <form onSubmit={handleSubmit(this.onFormSubmit)}>
-          <Field
-            name="City"
-            component={InputField}
-            type="text"
-            label="Miasto"
-            validate={[required]}
-          />
-          <Field
-            name="Street"
-            component={InputField}
-            type="text"
-            label="Ulica"
-            validate={[required]}
-          />
+      <div className="columns">
+        <div className="column">
+          <h1 className="title">Dodaj mieszkanie</h1>
+          <FormNotification error={error} />
+          <form onSubmit={handleSubmit(this.onFormSubmit)}>
+            <Field
+              name="City"
+              component={InputField}
+              type="text"
+              label="Miasto"
+              validate={[required]}
+            />
+            <Field
+              name="Street"
+              component={InputField}
+              type="text"
+              label="Ulica"
+              validate={[required]}
+            />
 
-          <Field
-            name="NumberOfRooms"
-            component={InputField}
-            type="number"
-            label="Liczba pokoi"
-            validate={[required, number, minValue0]}
-          />
+            <Field
+              name="NumberOfRooms"
+              component={InputField}
+              type="number"
+              label="Liczba pokoi"
+              validate={[required, number, minValue0]}
+            />
 
-          <Field
-            name="RoomArea"
-            component={InputField}
-            type="number"
-            label="Powierzchnia mieszkania"
-            validate={[required, number, minValue0]}
-          />
+            <Field
+              name="RoomArea"
+              component={InputField}
+              type="number"
+              label="Powierzchnia mieszkania"
+              validate={[required, number, minValue0]}
+            />
 
-          <div className="field">
-            <label className="label">Piętro</label>
-            <div className="control">
-              <div className="select">
-                <Field name="Floor" component="select" validate={[required]}>
-                  <option />
-                  <option value="0">{floorConverter(0)}</option>
-                  <option value="1">{floorConverter(1)}</option>
-                  <option value="2">{floorConverter(2)}</option>
-                  <option value="3">{floorConverter(3)}</option>
-                  <option value="4">{floorConverter(4)}</option>
-                  <option value="5">{floorConverter(5)}</option>
-                </Field>
+            <div className="field">
+              <label className="label">Piętro</label>
+              <div className="control">
+                <div className="select">
+                  <Field name="Floor" component="select" validate={[required]}>
+                    <option />
+                    <option value="0">{floorConverter(0)}</option>
+                    <option value="1">{floorConverter(1)}</option>
+                    <option value="2">{floorConverter(2)}</option>
+                    <option value="3">{floorConverter(3)}</option>
+                    <option value="4">{floorConverter(4)}</option>
+                    <option value="5">{floorConverter(5)}</option>
+                  </Field>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="field">
-            <div className="control">
-              <label className="checkbox">
+            <div className="field">
+              <div className="control">
+                <label className="checkbox">
+                  <Field
+                    name="HasBalcony"
+                    id="HasBalcony"
+                    component="input"
+                    type="checkbox"
+                  />
+                  &nbsp;Posiada balkon
+                </label>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Krótki opis tekstowy</label>
+              <div className="control">
                 <Field
-                  name="HasBalcony"
-                  id="HasBalcony"
-                  component="input"
-                  type="checkbox"
+                  className="textarea"
+                  name="Description"
+                  component="textarea"
+                  validate={[required]}
                 />
-                &nbsp;Posiada balkon
-              </label>
+              </div>
             </div>
-          </div>
 
-          <div className="field">
-            <label className="label">Krótki opis tekstowy</label>
-            <div className="control">
-              <Field
-                className="textarea"
-                name="Description"
-                component="textarea"
-                validate={[required]}
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Cena</label>
-            <div className="control">
-              <Field
-                className="input"
-                name="Price"
-                component="input"
-                type="number"
-                validate={[required, number, minValue0]}
-              />
-            </div>
-          </div>
-
-          {this.state.existingPictures.map(picture => (
-            <div key={picture.Filename}>
-              <label>{picture.Filename}</label>
-              <img src={`http://localhost:3001/uploads/${picture.Filename}`} />
-              <button
-                type="button"
-                onClick={() => this.deleteExistingPicture(picture)}
-              >
-                Usuń zdjęcie
-              </button>
-            </div>
-          ))}
-
-          {this.state.picturesToAdd.map(pictureAdd => (
-            <div key={pictureAdd} className="file">
-              <label className="file-label">
+            <div className="field">
+              <label className="label">Cena</label>
+              <div className="control">
                 <Field
-                  name={`pictures${pictureAdd}`}
+                  className="input"
+                  name="Price"
                   component="input"
-                  type="file"
-                  className="file-input"
+                  type="number"
+                  validate={[required, number, minValue0]}
                 />
-                <span className="file-cta">
-                  <span className="file-icon">
-                    <i className="fa fa-upload" />
+              </div>
+            </div>
+
+            {this.state.picturesToAdd.map(pictureAdd => (
+              <div key={pictureAdd} className="file">
+                <label className="file-label">
+                  <Field
+                    name={`pictures${pictureAdd}`}
+                    component="input"
+                    type="file"
+                    className="file-input"
+                  />
+                  <span className="file-cta">
+                    <span className="file-icon">
+                      <i className="fa fa-upload" />
+                    </span>
+                    <span className="file-label">Dodaj zdjęcie</span>
                   </span>
-                  <span className="file-label">Dodaj zdjęcie</span>
-                </span>
-              </label>
-              <button
-                className="button"
-                type="button"
-                onClick={() => this.deletePicture(pictureAdd)}
-              >
-                Usuń zdjęcie
-              </button>
+                </label>
+                <button
+                  className="button"
+                  type="button"
+                  onClick={() => this.deletePicture(pictureAdd)}
+                >
+                  Usuń zdjęcie
+                </button>
+              </div>
+            ))}
+
+            <div className="field">
+              <div className="control">
+                <button
+                  className="button"
+                  type="button"
+                  onClick={this.addPicture}
+                >
+                  Dodaj zdjęcie
+                </button>
+              </div>
+            </div>
+
+            <div className="field">
+              <div className="control">
+                <input
+                  className="button is-link"
+                  type="submit"
+                  value="Zapisz"
+                  disabled={submitting}
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="column">
+          {this.state.existingPictures.map(picture => (
+            <div className="card" key={picture.Id}>
+              <div className="card-image">
+                <figure className="image">
+                  <img
+                    src={`${baseUrl}uploads/${picture.Filename}`}
+                    alt={picture.Filename}
+                  />
+                </figure>
+              </div>
+              <div className="card-content">
+                <div className="content">{picture.Filename}</div>
+              </div>
+              <footer className="card-footer">
+                <a
+                  href="javascript:void(0)"
+                  className="card-footer-item"
+                  onClick={() => this.deleteExistingPicture(picture)}
+                >
+                  Usuń zdjęcie
+                </a>
+              </footer>
             </div>
           ))}
-
-          <div className="field">
-            <div className="control">
-              <button
-                className="button"
-                type="button"
-                onClick={this.addPicture}
-              >
-                Dodaj zdjęcie
-              </button>
-            </div>
-          </div>
-
-          <div className="field">
-            <div className="control">
-              <input
-                className="button is-link"
-                type="submit"
-                value="Zapisz"
-                disabled={submitting}
-              />
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     );
   }

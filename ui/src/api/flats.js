@@ -1,6 +1,7 @@
 import { get, post, put } from 'axios/index';
+import { baseUrl } from '../constants/Config';
 
-const url = 'http://localhost:3001/flats/';
+const url = `${baseUrl}flats/`;
 export default {
   get: () => {
     return get(url);
