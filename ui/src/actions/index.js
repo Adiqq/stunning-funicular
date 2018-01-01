@@ -5,8 +5,8 @@ import * as types from '../constants/ActionTypes';
 import { normalize } from 'normalizr';
 import * as schema from '../api/schema';
 import history from '../helpers/history';
-import { DELETE_USER_ERROR } from '../constants/ActionTypes';
-
+import { get, mapValues } from 'lodash';
+import { SubmissionError } from 'redux-form';
 const receiveFlats = flats => ({
   type: types.RECEIVE_FLATS,
   flats
@@ -26,9 +26,15 @@ export const getAllFlats = () => dispatch => {
   });
 };
 export const addFlat = flat => dispatch => {
-  flats.post(flat).then(response => {
-    dispatch(addFlatSuccess(response.data));
-  });
+  let promise = flats.post(flat);
+  promise
+    .then(response => {
+      dispatch(addFlatSuccess(response.data));
+    })
+    .catch(reason => {
+      dispatch(addFlatError());
+    });
+  return promise;
 };
 const updateFlatSuccess = flat => ({
   type: types.UPDATE_FLAT_SUCCESS,
@@ -40,14 +46,15 @@ const updateFlatError = flat => ({
 });
 
 export const updateFlat = flat => dispatch => {
-  flats
-    .put(flat)
+  let promise = flats.put(flat);
+  promise
     .then(response => {
       dispatch(updateFlatSuccess(response.data));
     })
     .catch(reason => {
       dispatch(updateFlatError(reason));
     });
+  return promise;
 };
 
 export const priceFilterChange = priceRange => ({
@@ -148,8 +155,9 @@ const loginUserError = () => ({
 
 export const login = data => dispatch => {
   let token = `Basic ${btoa(`${data.email}:${data.password}`)}`;
-  users
-    .login(token)
+  const promise = users.login(token);
+
+  return promise
     .then(response => {
       localStorage.setItem('token', token);
       dispatch(loginUserSuccess(response.data));
@@ -158,6 +166,11 @@ export const login = data => dispatch => {
     })
     .catch(reason => {
       dispatch(loginUserError());
+      if (reason.response.status === 401) {
+        throw new SubmissionError({ _error: 'Nieprawidłowe dane' });
+      } else {
+        throw new SubmissionError({ _error: 'Błąd wewnętrzny serwera' });
+      }
     });
 };
 

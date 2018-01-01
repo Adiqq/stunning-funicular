@@ -3,6 +3,9 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { changePassword, deleteUser } from '../actions';
 import { getUser } from '../reducers/users';
+import { ReadOnlyInputField } from '../components/ReadOnlyInputField';
+import { InputField } from '../components/InputField';
+import { minValue0, number, required } from '../helpers/validation';
 
 let UsersDetailsContainer = ({
   user,
@@ -18,16 +21,35 @@ let UsersDetailsContainer = ({
   };
   return (
     <div>
-      <p>{user.Id}</p>
-      <p>{user.PhoneNumber}</p>
-      <button onClick={onDeleteUser}>Usuń użytkownika</button>
-      <h2>Zmień hasło</h2>
+      <h3 className="subtitle">Dane użytkownika</h3>
+      <ReadOnlyInputField label="Email" value={user.Id} />
+      <ReadOnlyInputField label="Numer telefonu" value={user.PhoneNumber} />
+      <div className="field">
+        <div className="control">
+          <button onClick={onDeleteUser} className="button">
+            Usuń użytkownika
+          </button>
+        </div>
+      </div>
+      <h3 className="subtitle">Zmień hasło</h3>
       <form onSubmit={handleSubmit(onChangePassword)}>
-        <label>Nowe hasło</label>
-        <Field name="password" type="password" component="input" />
-        <label>Powtórz hasło</label>
-        <Field name="repeatPassword" type="password" component="input" />
-        <button type="submit">Zmień hasło</button>
+        <Field
+          name="password"
+          component={InputField}
+          type="password"
+          label="Nowe hasło"
+          validate={[required]}
+        />
+        <Field
+          name="repeatPassword"
+          component={InputField}
+          type="password"
+          label="Powtórz hasło"
+          validate={[required]}
+        />
+        <button type="submit" className="button">
+          Zmień hasło
+        </button>
       </form>
     </div>
   );

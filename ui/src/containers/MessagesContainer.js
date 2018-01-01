@@ -11,6 +11,9 @@ class MessagesContainer extends Component {
   }
   render() {
     const { messages, deleteFlatOffer, acceptFlatOffer } = this.props;
+    if (!messages || !messages.length) {
+      return <h3 className="subtitle">Brak nowych wiadomości</h3>;
+    }
     return (
       <nav className="panel">
         {messages.map(message => (

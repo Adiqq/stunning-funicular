@@ -4,6 +4,7 @@ import { getFlat } from '../reducers/flats';
 import { connect } from 'react-redux';
 import { floorConverter } from '../helpers/floors';
 import { getAllFlats } from '../actions';
+import { ReadOnlyInputField } from '../components/ReadOnlyInputField';
 
 class FlatDetailsContainer extends Component {
   componentDidMount() {
@@ -14,15 +15,18 @@ class FlatDetailsContainer extends Component {
     console.log(flat);
     if (!flat) return null;
     return (
-      <div style={{ margin: '20px' }}>
-        <p>{flat.City}</p>
-        <p>{flat.Street}</p>
-        <p>{flat.NumberOfRooms}</p>
-        <p>{flat.RoomArea}</p>
-        <p>{floorConverter(flat.Floor)}</p>
-        <p>{flat.HasBalcony ? 'Tak' : 'Nie'}</p>
-        <p>{flat.Description}</p>
-        <p>{flat.Price}</p>
+      <div>
+        <ReadOnlyInputField label="Miasto" value={flat.City} />
+        <ReadOnlyInputField label="Ulica" value={flat.Street} />
+        <ReadOnlyInputField label="Pokoje" value={flat.NumberOfRooms} />
+        <ReadOnlyInputField label="Powierzchnia" value={flat.RoomArea} />
+        <ReadOnlyInputField label="Piętro" value={floorConverter(flat.Floor)} />
+        <ReadOnlyInputField
+          label="Balkon"
+          value={flat.HasBalcony ? 'Tak' : 'Nie'}
+        />
+        <ReadOnlyInputField label="Opis" value={flat.Description} />
+        <ReadOnlyInputField label="Cena" value={flat.Price} />
         {flat.Pictures.map(picture => (
           <p key={picture.Id}>
             <img

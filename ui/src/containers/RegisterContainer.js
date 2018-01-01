@@ -55,6 +55,7 @@ let RegisterContainer = ({ handleSubmit, onRegister }) => (
           name="phoneNumber"
           component="input"
           type="tel"
+          placeholder="Numer telefonu"
         />
         <span className="icon is-small is-left">
           <i className="fa fa-phone" />
