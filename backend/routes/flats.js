@@ -235,7 +235,7 @@ router.post('/',
         check('price').exists().custom(value => parseInt(value) > 0).withMessage('Cena musi być wyższa od 0')
     ],
     function (req, res, next) {
-        if(!req.files.length){
+        if (!req.files.length) {
             return res.status(422).send('Zdjęcie jest wymagane')
         }
         const errors = validationResult(req);
@@ -247,6 +247,7 @@ router.post('/',
         //console.log(req);
         let flatId = uuidv4();
         let userId = req.user.Id;
+        let counter = req.files.length + 1;
         db.run(`INSERT INTO Flats(
     Id, UserId, City, Street, NumberOfRooms, RoomArea, Floor,
      HasBalcony, Description, Price)
@@ -262,6 +263,11 @@ router.post('/',
             $hasBalcony: flat.hasBalcony === 'true' ? 1 : 0,
             $description: flat.description,
             $price: flat.price
+        }, (err) => {
+            counter--;
+            if(counter === 0){
+                res.send('ok');
+            }
         });
         for (let i = 0; i < req.files.length; i++) {
             let pictureId = uuidv4();
@@ -271,10 +277,113 @@ router.post('/',
                 $flatId: flatId,
                 $filename: req.files[i].filename,
                 $filetype: req.files[i].mimetype
+            }, (err) => {
+                counter--;
+                if(counter === 0){
+                    res.send('ok');
+                }
             });
         }
 
-        res.send('ok');
+    });
+
+router.put('/',
+    passport.authenticate('basic', {session: false}),
+    upload.array('pictures'), [
+        check('flatId').exists(),
+        check('city').exists().withMessage('Miasto jest wymagane'),
+        check('street').exists().withMessage('Ulica jest wymagana'),
+        check('numberOfRooms').exists().withMessage('Liczba pokoi jest wymagana'),
+        check('numberOfRooms').exists().custom(value => parseInt(value) > 0).withMessage('Liczba pokoi musi być większa od 0'),
+        check('roomArea').exists().withMessage('Powierzchnia mieszkania jest wymagana'),
+        check('roomArea').exists().custom(value => parseInt(value) > 0).withMessage('Powierzchnia musi być większa od 0'),
+        check('floor').exists().withMessage('Piętro jest wymagane'),
+        check('floor').exists().custom(value => parseInt(value) >= 0 && parseInt(value) <= 5).withMessage('Nieprawidłowe piętro'),
+        check('hasBalcony').exists().withMessage('Podaj informację o obecności balkonu'),
+        check('description').exists().withMessage('Opis jest wymagany'),
+        check('price').exists().withMessage('Cena jest wymagana'),
+        check('price').exists().custom(value => parseInt(value) > 0).withMessage('Cena musi być wyższa od 0')
+    ],
+    function (req, res, next) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log(errors.mapped());
+            return res.status(422).json({errors: errors.mapped()});
+        }
+        const flat = matchedData(req);
+        console.log(flat);
+        //console.log(req);
+        let userId = req.user.Id;
+        db.get(`SELECT UserId FROM Flats WHERE Id = $id`, {
+            $id: flat.flatId
+        }, (err, row) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send(`Can't select flat`);
+            }
+            if (row) {
+                if (row.UserId !== userId) {
+                    return res.status(401).send('Not owner of flat');
+                }
+                let picturesToDelete = [];
+                if(req.body.picturesToDelete) {
+                    picturesToDelete = req.body.picturesToDelete.split(',');
+                }
+                let counter = req.files.length + picturesToDelete.length + 1;
+                db.run(`UPDATE Flats
+                        SET City = $city, Street = $street, NumberOfRooms = $numOfRooms, RoomArea = $roomArea,
+                        Floor = $floor, HasBalcony = $hasBalcony, Description = $description, Price = $price
+                        WHERE Id = $id
+                        `, {
+                    $id: flat.flatId,
+                    $city: flat.city,
+                    $street: flat.street,
+                    $numOfRooms: flat.numberOfRooms,
+                    $roomArea: flat.roomArea,
+                    $floor: parseInt(flat.floor),
+                    $hasBalcony: flat.hasBalcony === 'true' ? 1 : 0,
+                    $description: flat.description,
+                    $price: flat.price
+                }, err => {
+                    counter--;
+                    if(counter === 0){
+                        res.send('ok');
+                    }
+                });
+                for (let i = 0; i < req.files.length; i++) {
+                    let pictureId = uuidv4();
+                    db.run(`INSERT INTO Pictures(Id,FlatId,Filename,Filetype)
+                            VALUES($id,$flatId,$filename,$filetype)`, {
+                        $id: pictureId,
+                        $flatId: flat.flatId,
+                        $filename: req.files[i].filename,
+                        $filetype: req.files[i].mimetype
+                    }, err => {
+                        counter--;
+                        if(counter === 0){
+                            res.send('ok');
+                        }
+                    });
+                }
+                for (let i = 0; i < picturesToDelete.length; i++) {
+                    let pictureId = picturesToDelete[i];
+                    db.run(`DELETE FROM Pictures
+                        WHERE Id = $id AND FlatId = $flatId`, {
+                        $id: pictureId,
+                        $flatId: flat.flatId
+                    }, err => {
+                        counter--;
+                        if(counter === 0){
+                            res.send('ok');
+                        }
+                    });
+                }
+
+            } else {
+                return res.status(422).send('Flat not found');
+            }
+        });
+
     });
 
 module.exports = router;

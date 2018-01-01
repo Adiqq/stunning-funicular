@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getFlat } from '../reducers/flats';
 import { connect } from 'react-redux';
 import EditApartamentForm from '../components/EditApartamentForm';
-import { addFlat } from '../actions';
+import { addFlat, updateFlat } from '../actions';
 import { bindActionCreators } from 'redux';
 
 const FlatEditContainer = ({ flat, submitToServer }) => (
@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     submitToServer: bindActionCreators(
-      ownProps.match.params.id ? () => {} : addFlat,
+      ownProps.match.params.id ? updateFlat : addFlat,
       dispatch
     )
   };

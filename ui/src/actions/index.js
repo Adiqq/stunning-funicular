@@ -30,6 +30,25 @@ export const addFlat = flat => dispatch => {
     dispatch(addFlatSuccess(response.data));
   });
 };
+const updateFlatSuccess = flat => ({
+  type: types.UPDATE_FLAT_SUCCESS,
+  flat
+});
+const updateFlatError = flat => ({
+  type: types.UPDATE_FLAT_ERROR,
+  flat
+});
+
+export const updateFlat = flat => dispatch => {
+  flats
+    .put(flat)
+    .then(response => {
+      dispatch(updateFlatSuccess(response.data));
+    })
+    .catch(reason => {
+      dispatch(updateFlatError(reason));
+    });
+};
 
 export const priceFilterChange = priceRange => ({
   type: types.PRICE_FILTER_CHANGED,

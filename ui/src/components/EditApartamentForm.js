@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { post } from 'axios/index';
+import { get } from 'lodash';
 import { floorConverter } from '../helpers/floors';
 import './EditApartamentForm.css';
 
 class EditApartamentForm extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       counter: 0,
       picturesToAdd: [],
       picturesToDelete: [],
-      existingPictures: props.initialValues.Pictures
+      existingPictures: get(props, 'initialValues.Pictures')
+        ? get(props, 'initialValues.Pictures')
+        : []
     };
   }
 
@@ -44,9 +46,9 @@ class EditApartamentForm extends Component {
       existingPictures: [
         ...this.state.existingPictures.slice(0, index),
         ...this.state.existingPictures.slice(index + 1)
-      ]
+      ],
+      picturesToDelete: [...this.state.picturesToDelete, picture]
     });
-    this.state.picturesToDelete = [...this.state.picturesToDelete, picture];
   };
 
   append = (form, fieldName, field) => {
@@ -70,6 +72,13 @@ class EditApartamentForm extends Component {
     this.append(formData, 'hasBalcony', data.HasBalcony || false);
     this.append(formData, 'description', data.Description);
     this.append(formData, 'price', data.Price);
+    console.log(this.state);
+    this.append(
+      formData,
+      'picturesToDelete',
+      this.state.picturesToDelete.map(picture => picture.Id)
+    );
+    this.append(formData, 'flatId', get(this.props, 'initialValues.Id'));
 
     this.props.submitToServer(formData);
   };
