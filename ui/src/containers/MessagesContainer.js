@@ -12,29 +12,37 @@ class MessagesContainer extends Component {
   render() {
     const { messages, deleteFlatOffer, acceptFlatOffer } = this.props;
     return (
-      <ul>
+      <nav className="panel">
         {messages.map(message => (
-          <li key={message.SourceUserId + message.FlatId + message.Created}>
-            Użytkownik chce kupić{' '}
-            <Link to={'/apartament/details/' + message.FlatId}>mieszkanie</Link>.
-            Kontakt telefoniczny pod {message.User.PhoneNumber}.
-            <button
-              onClick={() => {
-                deleteFlatOffer(message);
-              }}
-            >
-              Usuń
-            </button>
-            <button
-              onClick={() => {
-                acceptFlatOffer(message);
-              }}
-            >
-              Akceptuj
-            </button>
-          </li>
+          <div
+            key={message.SourceUserId + message.FlatId + message.Created}
+            className="panel-block"
+          >
+            Użytkownik chce kupić&nbsp;
+            <Link to={'/apartament/details/' + message.FlatId}>
+              mieszkanie
+            </Link>. Kontakt telefoniczny pod {message.User.PhoneNumber}.
+            <div className="buttons">
+              <button
+                className="button"
+                onClick={() => {
+                  deleteFlatOffer(message);
+                }}
+              >
+                Usuń
+              </button>
+              <button
+                className="button"
+                onClick={() => {
+                  acceptFlatOffer(message);
+                }}
+              >
+                Akceptuj
+              </button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </nav>
     );
   }
 }

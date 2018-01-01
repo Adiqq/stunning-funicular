@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './MainMenu.css';
 import MainMenuUser from './MainMenuUser';
 import { MainMenuGuest } from './MainMenuGuest';
 import { getRole } from '../reducers/user';
@@ -10,19 +9,31 @@ const MainMenu = ({ role }) => {
   switch (role) {
     case 'User':
       return (
-        <nav>
+        <nav
+          className="navbar is-primary"
+          role="navigation"
+          aria-label="dropdown navigation"
+        >
           <MainMenuUser />
         </nav>
       );
     case 'Administrator':
       return (
-        <nav>
+        <nav
+          className="navbar is-primary"
+          role="navigation"
+          aria-label="dropdown navigation"
+        >
           <MainMenuAdmin />
         </nav>
       );
     default:
       return (
-        <nav>
+        <nav
+          className="navbar is-primary"
+          role="navigation"
+          aria-label="dropdown navigation"
+        >
           <MainMenuGuest />
         </nav>
       );

@@ -151,7 +151,9 @@ export const login = data => dispatch => {
   users
     .login(token)
     .then(response => {
+      localStorage.setItem('token', token);
       dispatch(loginUserSuccess(response.data));
+      getAllFlatOffers()(dispatch);
       history.push('/');
     })
     .catch(reason => {
@@ -177,6 +179,7 @@ export const register = data => dispatch => {
 };
 
 export const signout = () => {
+  localStorage.removeItem('token');
   users.signout();
   return {
     type: types.SIGNOUT

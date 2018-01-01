@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  console.log(ownProps.match.params.id);
   return {
     submitToServer: bindActionCreators(
       ownProps.match.params.id ? updateFlat : addFlat,

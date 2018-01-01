@@ -1,33 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getFlat } from '../reducers/flats';
 import { connect } from 'react-redux';
 import { floorConverter } from '../helpers/floors';
+import { getAllFlats } from '../actions';
 
-const FlatDetailsContainer = ({ flat }) => {
-  console.log(flat);
-  if (!flat) return null;
-  return (
-    <div style={{ margin: '20px' }}>
-      <p>{flat.City}</p>
-      <p>{flat.Street}</p>
-      <p>{flat.NumberOfRooms}</p>
-      <p>{flat.RoomArea}</p>
-      <p>{floorConverter(flat.Floor)}</p>
-      <p>{flat.HasBalcony ? 'Tak' : 'Nie'}</p>
-      <p>{flat.Description}</p>
-      <p>{flat.Price}</p>
-      {flat.Pictures.map(picture => (
-        <p key={picture.Id}>
-          <img
-            src={'http://localhost:3001/uploads/' + picture.Filename}
-            alt={picture.Filename}
-          />
-        </p>
-      ))}
-    </div>
-  );
-};
+class FlatDetailsContainer extends Component {
+  componentDidMount() {
+    this.props.getAllFlats();
+  }
+  render() {
+    const { flat } = this.props;
+    console.log(flat);
+    if (!flat) return null;
+    return (
+      <div style={{ margin: '20px' }}>
+        <p>{flat.City}</p>
+        <p>{flat.Street}</p>
+        <p>{flat.NumberOfRooms}</p>
+        <p>{flat.RoomArea}</p>
+        <p>{floorConverter(flat.Floor)}</p>
+        <p>{flat.HasBalcony ? 'Tak' : 'Nie'}</p>
+        <p>{flat.Description}</p>
+        <p>{flat.Price}</p>
+        {flat.Pictures.map(picture => (
+          <p key={picture.Id}>
+            <img
+              src={'http://localhost:3001/uploads/' + picture.Filename}
+              alt={picture.Filename}
+            />
+          </p>
+        ))}
+      </div>
+    );
+  }
+}
 
 FlatDetailsContainer.propTypes = {
   flat: PropTypes.shape({
@@ -56,4 +63,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(FlatDetailsContainer);
+export default connect(mapStateToProps, { getAllFlats })(FlatDetailsContainer);

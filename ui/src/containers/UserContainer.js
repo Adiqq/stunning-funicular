@@ -11,13 +11,13 @@ class UserContainer extends Component {
   render() {
     const { users } = this.props;
     return (
-      <ul>
+      <nav className="panel">
         {users.map(user => (
-          <li key={user.Id}>
-            <Link to={`/users/${user.Id}`}>{user.Id}</Link>
-          </li>
+          <Link key={user.Id} to={`/users/${user.Id}`} className="panel-block">
+            {user.Id}
+          </Link>
         ))}
-      </ul>
+      </nav>
     );
   }
 }

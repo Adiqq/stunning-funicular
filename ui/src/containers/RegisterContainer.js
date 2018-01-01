@@ -6,15 +6,70 @@ import { connect } from 'react-redux';
 
 let RegisterContainer = ({ handleSubmit, onRegister }) => (
   <form onSubmit={handleSubmit(onRegister)}>
-    <label>E-mail</label>
-    <Field name="email" component="input" type="email" placeholder="E-mail" />
-    <label>Hasło</label>
-    <Field name="password" component="input" type="password" />
-    <label>Powtórz hasło</label>
-    <Field name="passwordRepeat" component="input" type="password" />
-    <label>Telefon</label>
-    <Field name="phoneNumber" component="input" type="tel" />
-    <input type="submit" value="Utwórz konto" />
+    <div className="field">
+      <p className="control has-icons-left has-icons-right">
+        <Field
+          className="input"
+          name="email"
+          component="input"
+          type="email"
+          placeholder="Email"
+        />
+        <span className="icon is-small is-left">
+          <i className="fa fa-envelope" />
+        </span>
+      </p>
+    </div>
+    <div className="field">
+      <p className="control has-icons-left">
+        <Field
+          className="input"
+          name="password"
+          component="input"
+          type="password"
+          placeholder="Hasło"
+        />
+        <span className="icon is-small is-left">
+          <i className="fa fa-lock" />
+        </span>
+      </p>
+    </div>
+    <div className="field">
+      <p className="control has-icons-left">
+        <Field
+          className="input"
+          name="passwordRepeat"
+          component="input"
+          type="password"
+          placeholder="Powtórz hasło"
+        />
+        <span className="icon is-small is-left">
+          <i className="fa fa-lock" />
+        </span>
+      </p>
+    </div>
+    <div className="field">
+      <p className="control has-icons-left has-icons-right">
+        <Field
+          className="input"
+          name="phoneNumber"
+          component="input"
+          type="tel"
+        />
+        <span className="icon is-small is-left">
+          <i className="fa fa-phone" />
+        </span>
+      </p>
+    </div>
+    <div className="field">
+      <p className="control">
+        <input
+          className="button is-success"
+          type="submit"
+          value="Utwórz konto"
+        />
+      </p>
+    </div>
   </form>
 );
 

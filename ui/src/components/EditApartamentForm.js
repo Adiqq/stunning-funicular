@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { get } from 'lodash';
 import { floorConverter } from '../helpers/floors';
-import './EditApartamentForm.css';
 
 class EditApartamentForm extends Component {
   constructor(props) {
@@ -20,7 +19,8 @@ class EditApartamentForm extends Component {
   addPicture = () => {
     this.setState({
       ...this.state,
-      picturesToAdd: [...this.state.picturesToAdd, this.state.counter++]
+      picturesToAdd: [...this.state.picturesToAdd, this.state.counter + 1],
+      counter: this.state.counter + 1
     });
   };
 
@@ -93,57 +93,73 @@ class EditApartamentForm extends Component {
       submitToServer
     } = this.props;
     return (
-      <div className="wrapper">
+      <div>
         <h3>Dodaj mieszkanie</h3>
 
         <div>
           <form onSubmit={handleSubmit(this.onFormSubmit)}>
-            <label htmlFor="City">Miasto</label>
-            <Field
-              name="City"
-              component="input"
-              type="text"
-              placeholder="Miasto"
-            />
+            <div className="field">
+              <label htmlFor="City">Miasto</label>
+              <Field
+                name="City"
+                component="input"
+                type="text"
+                placeholder="Miasto"
+              />
+            </div>
 
-            <label htmlFor="Street">Ulica</label>
-            <Field
-              name="Street"
-              component="input"
-              type="text"
-              placeholder="Ulica"
-            />
+            <div className="field">
+              <label htmlFor="Street">Ulica</label>
+              <Field
+                name="Street"
+                component="input"
+                type="text"
+                placeholder="Ulica"
+              />
+            </div>
 
-            <label htmlFor="NumberOfRooms">Liczba pokoi</label>
-            <Field name="NumberOfRooms" component="input" type="number" />
+            <div className="field">
+              <label htmlFor="NumberOfRooms">Liczba pokoi</label>
+              <Field name="NumberOfRooms" component="input" type="number" />
+            </div>
 
-            <label htmlFor="RoomArea">Powierzchnia mieszkania</label>
-            <Field name="RoomArea" component="input" type="number" />
+            <div className="field">
+              <label htmlFor="RoomArea">Powierzchnia mieszkania</label>
+              <Field name="RoomArea" component="input" type="number" />
+            </div>
 
-            <label htmlFor="Floor">Piętro</label>
-            <Field name="Floor" component="select">
-              <option />
-              <option value="0">{floorConverter(0)}</option>
-              <option value="1">{floorConverter(1)}</option>
-              <option value="2">{floorConverter(2)}</option>
-              <option value="3">{floorConverter(3)}</option>
-              <option value="4">{floorConverter(4)}</option>
-              <option value="5">{floorConverter(5)}</option>
-            </Field>
+            <div className="field">
+              <label htmlFor="Floor">Piętro</label>
+              <Field name="Floor" component="select">
+                <option />
+                <option value="0">{floorConverter(0)}</option>
+                <option value="1">{floorConverter(1)}</option>
+                <option value="2">{floorConverter(2)}</option>
+                <option value="3">{floorConverter(3)}</option>
+                <option value="4">{floorConverter(4)}</option>
+                <option value="5">{floorConverter(5)}</option>
+              </Field>
+            </div>
 
-            <label htmlFor="HasBalcony">Posiada balkon</label>
-            <Field
-              name="HasBalcony"
-              id="HasBalcony"
-              component="input"
-              type="checkbox"
-            />
+            <div className="field">
+              <label htmlFor="HasBalcony">Posiada balkon</label>
+              <Field
+                name="HasBalcony"
+                id="HasBalcony"
+                component="input"
+                type="checkbox"
+              />
+            </div>
 
-            <label htmlFor="Description">Krótki opis tekstowy</label>
-            <Field name="Description" component="input" type="textarea" />
+            <div className="field">
+              <label htmlFor="Description">Krótki opis tekstowy</label>
+              <Field name="Description" component="input" type="textarea" />
+            </div>
 
-            <label htmlFor="Price">Cena</label>
-            <Field name="Price" component="input" type="number" />
+            <div className="field">
+              <label htmlFor="Price">Cena</label>
+              <Field name="Price" component="input" type="number" />
+            </div>
 
             {this.state.existingPictures.map(picture => (
               <div key={picture.Filename}>
@@ -161,14 +177,23 @@ class EditApartamentForm extends Component {
             ))}
 
             {this.state.picturesToAdd.map(pictureAdd => (
-              <div key={pictureAdd}>
-                <label htmlFor={`pictures${pictureAdd}`}>Nowe zdjęcie</label>
-                <Field
-                  name={`pictures${pictureAdd}`}
-                  component="input"
-                  type="file"
-                />
+              <div key={pictureAdd} className="file">
+                <label className="file-label">
+                  <Field
+                    name={`pictures${pictureAdd}`}
+                    component="input"
+                    type="file"
+                    className="file-input"
+                  />
+                  <span className="file-cta">
+                    <span className="file-icon">
+                      <i className="fa fa-upload" />
+                    </span>
+                    <span className="file-label">Dodaj zdjęcie</span>
+                  </span>
+                </label>
                 <button
+                  className="button"
                   type="button"
                   onClick={() => this.deletePicture(pictureAdd)}
                 >
@@ -177,11 +202,11 @@ class EditApartamentForm extends Component {
               </div>
             ))}
 
-            <button type="button" onClick={this.addPicture}>
+            <button className="button" type="button" onClick={this.addPicture}>
               Dodaj zdjęcie
             </button>
 
-            <input type="submit" value="Submit" />
+            <input className="button" type="submit" value="Dodaj" />
           </form>
         </div>
       </div>

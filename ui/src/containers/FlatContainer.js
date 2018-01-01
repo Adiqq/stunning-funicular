@@ -23,14 +23,16 @@ class FlatContainer extends Component {
     const { flats, wantBuy } = this.props;
     return (
       <div>
-        <Link to={'apartament'}>
-          <button>Dodaj ofertę</button>
+        <Link className="button is-primary" to={'apartament'}>
+          Dodaj ofertę
         </Link>
-        <FlatPriceFilter />
-        <NumberOfRoomsFilter />
-        <RoomAreaFilter />
-        <BalconyFilter />
-        <table>
+        <div className="box">
+          <FlatPriceFilter />
+          <NumberOfRoomsFilter />
+          <RoomAreaFilter />
+          <BalconyFilter />
+        </div>
+        <table className="table">
           <thead>
             <tr>
               <th>Zdjęcie</th>

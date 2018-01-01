@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const MainMenuGuest = () => (
-  <ul>
-    <li>
-      <Link to="/register">Rejestracja</Link>
-    </li>
-    <li>
-      <Link to="/login">Logowanie</Link>
-    </li>
-  </ul>
+  <div className="navbar-menu">
+    <div className="navbar-start">
+      <Link className="navbar-item" to="/register">
+        Rejestracja
+      </Link>
+      <Link className="navbar-item" to="/login">
+        Logowanie
+      </Link>
+    </div>
+  </div>
 );

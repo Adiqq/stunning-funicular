@@ -4,11 +4,14 @@ import { get } from 'lodash';
 const userReducer = (state = {}, action) => {
   switch (action.type) {
     case LOGIN_USER_SUCCESS:
-      return {
+      const newState = {
         ...state,
         ...action.user
       };
+      localStorage.setItem('user', JSON.stringify(newState));
+      return newState;
     case SIGNOUT:
+      localStorage.removeItem('user');
       return {};
     default:
       return state;

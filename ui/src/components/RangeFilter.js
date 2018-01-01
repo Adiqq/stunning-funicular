@@ -12,21 +12,27 @@ const RangeFilter = ({ minLabel, maxLabel, range, filterChanged }) => {
     filterChanged(range);
   };
   return (
-    <div>
-      <label>{minLabel}</label>
-      <input
-        name="min"
-        type="number"
-        value={range.min}
-        onChange={handleInputChange}
-      />
-      <label>{maxLabel}</label>
-      <input
-        name="max"
-        type="number"
-        value={range.max}
-        onChange={handleInputChange}
-      />
+    <div className="columns">
+      <div className="column">
+        <label className="label">{minLabel}</label>
+        <input
+          className="input"
+          name="min"
+          type="number"
+          value={range.min}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div className="column">
+        <label className="label">{maxLabel}</label>
+        <input
+          className="input"
+          name="max"
+          type="number"
+          value={range.max}
+          onChange={handleInputChange}
+        />
+      </div>
     </div>
   );
 };

@@ -7,27 +7,38 @@ const FlatItemButtons = ({ flat, wantBuy }) => {
   if (flat.isOwnFlat) {
     return (
       <td>
-        <Link to={'/apartament/details/' + flat.Id}>
-          <button>Szczegóły</button>
-        </Link>
-        <Link to={'/apartament/' + flat.Id}>
-          <button>Edytuj</button>
-        </Link>
+        <div className="buttons">
+          <Link
+            className="button is-link"
+            to={'/apartament/details/' + flat.Id}
+          >
+            Szczegóły
+          </Link>
+          <Link className="button is-link" to={'/apartament/' + flat.Id}>
+            Edytuj
+          </Link>
+        </div>
       </td>
     );
   } else {
     return (
       <td>
-        <Link to={'/apartament/details/' + flat.Id}>
-          <button>Szczegóły</button>
-        </Link>
-        <button
-          onClick={() => {
-            wantBuy(flat.Id);
-          }}
-        >
-          Chcę kupić
-        </button>
+        <div className="buttons">
+          <Link
+            className="button is-link"
+            to={'/apartament/details/' + flat.Id}
+          >
+            Szczegóły
+          </Link>
+          <button
+            className="button is-link"
+            onClick={() => {
+              wantBuy(flat.Id);
+            }}
+          >
+            Chcę kupić
+          </button>
+        </div>
       </td>
     );
   }

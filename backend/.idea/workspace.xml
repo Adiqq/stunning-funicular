@@ -2,13 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cf98830-6435-4c25-b4a8-3f647e3e1242" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/routes/flats.js" afterPath="$PROJECT_DIR$/routes/flats.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/Root.css" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../ui/public/index.html" afterPath="$PROJECT_DIR$/../ui/public/index.html" />
       <change beforePath="$PROJECT_DIR$/../ui/src/actions/index.js" afterPath="$PROJECT_DIR$/../ui/src/actions/index.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/api/flats.js" afterPath="$PROJECT_DIR$/../ui/src/api/flats.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" afterPath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/FlatItemButtons.js" afterPath="$PROJECT_DIR$/../ui/src/components/FlatItemButtons.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenu.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenu.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenuAdmin.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuAdmin.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenuGuest.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuGuest.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenuUser.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuUser.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/RangeFilter.js" afterPath="$PROJECT_DIR$/../ui/src/components/RangeFilter.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/BalconyFilter.js" afterPath="$PROJECT_DIR$/../ui/src/containers/BalconyFilter.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatDetailsContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatDetailsContainer.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatEditContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatEditContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/LoginContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/LoginContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/MessagesContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/MessagesContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/RegisterContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/RegisterContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/Root.js" afterPath="$PROJECT_DIR$/../ui/src/containers/Root.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/UserContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/UserContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/index.js" afterPath="$PROJECT_DIR$/../ui/src/index.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/user.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/user.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,7 +51,7 @@
       <file leaf-file-name="flats.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/flats.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
+            <state relative-caret-position="236">
               <caret line="329" column="20" lean-forward="false" selection-start-line="329" selection-start-column="20" selection-end-line="329" selection-end-column="20" />
               <folding />
             </state>
@@ -256,12 +272,12 @@
       <workItem from="1514477849858" duration="2316000" />
       <workItem from="1514673622190" duration="11589000" />
       <workItem from="1514736827786" duration="10352000" />
-      <workItem from="1514755623545" duration="8732000" />
+      <workItem from="1514755623545" duration="9634000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78688000" />
+    <option name="totallyTimeSpent" value="79590000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1045" extended-state="6" />
@@ -271,7 +287,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -693,7 +709,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/flats.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
+        <state relative-caret-position="236">
           <caret line="329" column="20" lean-forward="false" selection-start-line="329" selection-start-column="20" selection-end-line="329" selection-end-column="20" />
           <folding />
         </state>

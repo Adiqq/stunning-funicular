@@ -15,10 +15,9 @@ const BalconyFilter = ({ balcony, balconyFilterChange }) => {
   };
 
   return (
-    <div>
-      <label>Z balkonem?</label>
+    <div className="select">
       <select value={balcony} onChange={handleInputChange}>
-        <option value="" />
+        <option value="">Z balkonem?</option>
         <option value="true">Tak</option>
         <option value="false">Nie</option>
       </select>

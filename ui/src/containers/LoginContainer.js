@@ -6,11 +6,39 @@ import { connect } from 'react-redux';
 
 let LoginContainer = ({ handleSubmit, onLogin }) => (
   <form onSubmit={handleSubmit(onLogin)}>
-    <label>E-mail</label>
-    <Field name="email" component="input" type="email" placeholder="E-mail" />
-    <label>Hasło</label>
-    <Field name="password" component="input" type="password" />
-    <input type="submit" value="Zaloguj" />
+    <div className="field">
+      <p className="control has-icons-left has-icons-right">
+        <Field
+          className="input"
+          name="email"
+          component="input"
+          type="email"
+          placeholder="Email"
+        />
+        <span className="icon is-small is-left">
+          <i className="fa fa-envelope" />
+        </span>
+      </p>
+    </div>
+    <div className="field">
+      <p className="control has-icons-left">
+        <Field
+          className="input"
+          name="password"
+          component="input"
+          type="password"
+          placeholder="Password"
+        />
+        <span className="icon is-small is-left">
+          <i className="fa fa-lock" />
+        </span>
+      </p>
+    </div>
+    <div className="field">
+      <p className="control">
+        <input className="button is-success" type="submit" value="Zaloguj" />
+      </p>
+    </div>
   </form>
 );
 

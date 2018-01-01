@@ -6,22 +6,24 @@ import { getId } from '../reducers/user';
 import { getMessageCount } from '../reducers/flatOffers';
 
 const MainMenuAdmin = ({ signout, userId, messageCounter }) => (
-  <ul>
-    <li>
-      <Link to="/">Mieszkania</Link>
-    </li>
-    <li>
-      <Link to="/messages">Wiadomości ({messageCounter})</Link>
-    </li>
-    <li>
-      <Link to="/users">Użytkownicy</Link>
-    </li>
-    <li>
-      <a href="javascript:void(0)" onClick={signout}>
+  <div className="navbar-menu">
+    <div className="navbar-start">
+      <Link className="navbar-item" to="/">
+        Mieszkania
+      </Link>
+      <Link className="navbar-item" to="/messages">
+        Wiadomości ({messageCounter})
+      </Link>
+      <Link className="navbar-item" to="/users">
+        Użytkownicy
+      </Link>
+    </div>
+    <div className="navbar-end">
+      <a href="javascript:void(0)" onClick={signout} className="navbar-item">
         {`(${userId})`} Wyloguj
       </a>
-    </li>
-  </ul>
+    </div>
+  </div>
 );
 
 const mapStateToProps = state => ({
