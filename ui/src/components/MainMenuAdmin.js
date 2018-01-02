@@ -6,7 +6,7 @@ import { getId } from '../reducers/user';
 import { getMessageCount } from '../reducers/flatOffers';
 
 const MainMenuAdmin = ({ signout, userId, messageCounter }) => (
-  <div className="navbar-menu">
+  <div className="navbar-menu is-active">
     <div className="navbar-start">
       <Link className="navbar-item" to="/">
         Mieszkania
