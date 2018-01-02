@@ -67,4 +67,14 @@ export const getVisibleFlats = state => {
     return true;
   });
 };
+
+export const getLastViewedFlats = state => {
+  const flatViews = state.flatViews;
+  if (flatViews) {
+    return getNotSoldOrOwnFlats(state).filter(flat =>
+      flatViews.includes(flat.Id)
+    );
+  }
+  return [];
+};
 export default flatsReducer;

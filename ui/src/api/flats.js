@@ -1,4 +1,5 @@
 import { get, post, put } from 'axios/index';
+import * as axios from 'axios';
 import { baseUrl } from '../constants/Config';
 
 const url = `${baseUrl}flats/`;
@@ -17,5 +18,8 @@ export default {
       headers: { 'content-type': 'multipart/form-data' }
     };
     return put(url, formData, config);
+  },
+  delete: id => {
+    return axios.delete(`${url}${id}`);
   }
 };

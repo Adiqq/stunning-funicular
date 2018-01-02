@@ -90,11 +90,19 @@ class EditApartamentForm extends Component {
   };
 
   render() {
-    const { error, handleSubmit, submitting } = this.props;
+    const {
+      error,
+      handleSubmit,
+      submitting,
+      initialValues,
+      deleteFlat
+    } = this.props;
     return (
       <div className="columns">
         <div className="column">
-          <h1 className="title">Dodaj mieszkanie</h1>
+          <h1 className="title">
+            {initialValues ? 'Edytuj mieszkanie' : 'Dodaj mieszkanie'}
+          </h1>
           <FormNotification error={error} />
           <form onSubmit={handleSubmit(this.onFormSubmit)}>
             <Field
@@ -218,6 +226,20 @@ class EditApartamentForm extends Component {
                   value="Zapisz"
                   disabled={submitting}
                 />
+              </div>
+            </div>
+            <div className={initialValues ? '' : 'is-hidden'}>
+              <div className="field">
+                <div className="control">
+                  <button
+                    className="button is-danger"
+                    disabled={submitting}
+                    type="button"
+                    onClick={() => deleteFlat(initialValues.Id)}
+                  >
+                    Usuń mieszkanie
+                  </button>
+                </div>
               </div>
             </div>
           </form>

@@ -12,7 +12,7 @@ export const ReadOnlyInputField = ({ label, value }) => (
             className="input is-static"
             type="email"
             value={value}
-            readonly
+            readOnly
           />
         </p>
       </div>

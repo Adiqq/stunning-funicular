@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlatItem from '../components/FlatItem';
-import { getFlats, getVisibleFlats } from '../reducers/flats';
+import {
+  getFlats,
+  getLastViewedFlats,
+  getVisibleFlats
+} from '../reducers/flats';
 import { Link } from 'react-router-dom';
 import FlatPriceFilter from './FlatPriceFilter';
 import NumberOfRoomsFilter from './NumberOfRoomsFilter';
@@ -13,14 +17,16 @@ import * as action from '../actions';
 
 class FlatContainer extends Component {
   componentDidMount() {
-    console.log('did mount');
+    window.scrollTo(0, 0);
     this.props.getAllFlats();
   }
+
   componentDidUpdate() {
     console.log('did update');
   }
+
   render() {
-    const { flats, wantBuy } = this.props;
+    const { flats, flatViews, wantBuy } = this.props;
     return (
       <div>
         <Link className="button is-primary" to={'apartament'}>
@@ -32,6 +38,30 @@ class FlatContainer extends Component {
           <RoomAreaFilter />
           <BalconyFilter />
         </div>
+        <div className={flatViews.length ? '' : 'is-hidden'}>
+          <h3 className="subtitle">Ostatnio przeglądane</h3>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Zdjęcie</th>
+                <th>Użytkownik</th>
+                <th>Miasto</th>
+                <th>Liczba pokoi</th>
+                <th>Powierzchnia</th>
+                <th>Piętro</th>
+                <th>Posiada balkon</th>
+                <th>Cena</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              {flatViews.map(flat => (
+                <FlatItem key={flat.Id} flat={flat} wantBuy={wantBuy} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <h3 className="subtitle">Mieszkania</h3>
         <table className="table">
           <thead>
             <tr>
@@ -84,7 +114,8 @@ FlatContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  flats: getVisibleFlats(state)
+  flats: getVisibleFlats(state),
+  flatViews: getLastViewedFlats(state)
 });
 
 export default connect(mapStateToProps, { wantBuy, getAllFlats })(

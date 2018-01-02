@@ -15,8 +15,11 @@ const userSerialized = localStorage.getItem('user');
 let state = {};
 if (userSerialized) {
   const user = JSON.parse(userSerialized);
+  const flatViewsSerialized = localStorage.getItem('flatViews');
+  const flatViews = flatViewsSerialized ? JSON.parse(flatViewsSerialized) : [];
   state = {
-    user: user
+    user,
+    flatViews
   };
   axios.defaults.headers.common['Authorization'] = token;
 }

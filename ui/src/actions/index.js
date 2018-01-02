@@ -354,3 +354,40 @@ export const removeErrorNotification = (id, timeout) => dispatch => {
     });
   }, timeout);
 };
+
+export const flatView = id => ({
+  type: types.FLAT_VIEW,
+  id
+});
+
+export const deleteFlatSuccess = message => ({
+  type: types.DELETE_FLAT_SUCCESS,
+  message
+});
+
+export const deleteFlatError = message => ({
+  type: types.DELETE_FLAT_ERROR,
+  message
+});
+
+export const deleteFlat = id => dispatch => {
+  return flats
+    .delete(id)
+    .then(result => {
+      dispatch(
+        deleteFlatSuccess({
+          id: uuidv4(),
+          message: 'Usunięto mieszkanie'
+        })
+      );
+      history.push('/');
+    })
+    .catch(reason => {
+      dispatch(
+        deleteFlatError({
+          id: uuidv4(),
+          message: 'Nie udało się usunąć mieszkania'
+        })
+      );
+    });
+};

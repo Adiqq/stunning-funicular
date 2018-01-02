@@ -18,6 +18,7 @@ const notificationsReducer = (
     case types.CHANGE_PASSWORD_SUCCESS:
     case types.DELETE_USER_SUCCESS:
     case types.UPDATE_FLAT_SUCCESS:
+    case types.DELETE_FLAT_SUCCESS:
       return {
         ...state,
         successes: [...state.successes, action.message]
@@ -27,6 +28,7 @@ const notificationsReducer = (
     case types.FLAT_BUY_OFFER_ERROR:
     case types.DELETE_USER_ERROR:
     case types.UPDATE_FLAT_ERROR:
+    case types.DELETE_FLAT_ERROR:
       return {
         ...state,
         errors: [...state.errors, action.message]

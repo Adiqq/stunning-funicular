@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cf98830-6435-4c25-b4a8-3f647e3e1242" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/SelectField.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/TextareaField.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/reducers/flatViews.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/routes/flats.js" afterPath="$PROJECT_DIR$/routes/flats.js" />
       <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/../ui/src/actions/index.js" afterPath="$PROJECT_DIR$/../ui/src/actions/index.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/api/flats.js" afterPath="$PROJECT_DIR$/../ui/src/api/flats.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" afterPath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/ReadOnlyInputField.js" afterPath="$PROJECT_DIR$/../ui/src/components/ReadOnlyInputField.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatDetailsContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatDetailsContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatEditContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatEditContainer.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/index.js" afterPath="$PROJECT_DIR$/../ui/src/index.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/flats.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/flats.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/index.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/index.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/reducers/notifications.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/notifications.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,8 +34,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1605">
-              <caret line="107" column="5" lean-forward="false" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
+            <state relative-caret-position="345">
+              <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -36,8 +44,8 @@
       <file leaf-file-name="flats.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/flats.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="200" column="36" lean-forward="false" selection-start-line="200" selection-start-column="36" selection-end-line="200" selection-end-column="36" />
+            <state relative-caret-position="301">
+              <caret line="411" column="30" lean-forward="false" selection-start-line="411" selection-start-column="30" selection-end-line="411" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -46,7 +54,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
+            <state relative-caret-position="1321">
               <caret line="189" column="5" lean-forward="false" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
               <folding />
             </state>
@@ -252,12 +260,12 @@
       <workItem from="1514673622190" duration="11589000" />
       <workItem from="1514736827786" duration="10352000" />
       <workItem from="1514755623545" duration="9634000" />
-      <workItem from="1514826758537" duration="7561000" />
+      <workItem from="1514826758537" duration="10307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87151000" />
+    <option name="totallyTimeSpent" value="89897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1045" extended-state="6" />
@@ -267,7 +275,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -679,15 +687,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="107" column="5" lean-forward="false" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
+        <state relative-caret-position="345">
+          <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
+        <state relative-caret-position="1321">
           <caret line="189" column="5" lean-forward="false" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
           <folding />
         </state>
@@ -695,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/flats.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="200" column="36" lean-forward="false" selection-start-line="200" selection-start-column="36" selection-end-line="200" selection-end-column="36" />
+        <state relative-caret-position="301">
+          <caret line="411" column="30" lean-forward="false" selection-start-line="411" selection-start-column="30" selection-end-line="411" selection-end-column="30" />
           <folding />
         </state>
       </provider>

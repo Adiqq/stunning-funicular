@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { getFlat } from '../reducers/flats';
 import { connect } from 'react-redux';
 import { floorConverter } from '../helpers/floors';
-import { getAllFlats } from '../actions';
+import { flatView, getAllFlats } from '../actions';
 import { ReadOnlyInputField } from '../components/ReadOnlyInputField';
 import { baseUrl } from '../constants/Config';
 
 class FlatDetailsContainer extends Component {
   componentDidMount() {
     this.props.getAllFlats();
+    this.props.flatView(this.props.flat.Id);
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -71,7 +73,9 @@ FlatDetailsContainer.propTypes = {
         Filename: PropTypes.string.isRequired
       })
     ).isRequired
-  }).isRequired
+  }).isRequired,
+  getAllFlats: PropTypes.func.isRequired,
+  flatView: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -80,4 +84,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { getAllFlats })(FlatDetailsContainer);
+export default connect(mapStateToProps, { getAllFlats, flatView })(
+  FlatDetailsContainer
+);

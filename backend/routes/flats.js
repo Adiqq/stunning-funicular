@@ -199,8 +199,8 @@ router.get('/', passport.authenticate('basic', {session: false}),
                     row.Pending = rows.some(row => row.SourceUserId === req.user.Id && row.Status === 'Pending');
                     counter--;
                     flats.push(row);
-                    if (counter === 0) {
-                        return res.send(flats);
+                    if (counter === 0 && !res.headersSent) {
+                        return res.json(flats);
                     }
                 })
             });
@@ -370,6 +370,60 @@ router.put('/',
                     });
                 }
 
+            } else {
+                return res.status(422).send('Flat not found');
+            }
+        });
+
+    });
+
+router.delete('/:flatId',
+    passport.authenticate('basic', {session: false}),
+    function (req, res, next) {
+        const userId = req.user.Id;
+        const flatId = req.params.flatId;
+        db.get(`SELECT UserId FROM Flats WHERE Id = $id`, {
+            $id: flatId
+        }, (err, row) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send(`Can't select flat`);
+            }
+            if (row) {
+                if (row.UserId !== userId) {
+                    return res.status(401).send('Not owner of flat');
+                }
+                let counter = 3;
+                db.run(`DELETE FROM Flats
+                    WHERE Id = $flatId`, {
+                    $flatId: flatId
+                }, err => {
+                    if(err) console.error(err);
+                    counter--;
+                    if (counter === 0 && !res.headersSent) {
+                        return res.send('ok');
+                    }
+                });
+                db.run(`DELETE FROM Pictures
+                    WHERE FlatId = $flatId`, {
+                    $flatId: flatId
+                }, err => {
+                    if(err) console.error(err);
+                    counter--;
+                    if (counter === 0 && !res.headersSent) {
+                        return res.send('ok');
+                    }
+                });
+                db.run(`DELETE FROM FlatOffers
+                    WHERE FlatId = $flatId`, {
+                    $flatId: flatId
+                }, err => {
+                    if(err) console.error(err);
+                    counter--;
+                    if (counter === 0 && !res.headersSent) {
+                        return res.send('ok');
+                    }
+                });
             } else {
                 return res.status(422).send('Flat not found');
             }
