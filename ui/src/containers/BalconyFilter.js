@@ -8,7 +8,6 @@ const BalconyFilter = ({ balcony, balconyFilterChange }) => {
   const handleInputChange = event => {
     const target = event.target;
     const value = target.value;
-    const name = target.name;
     balconyFilterChange(
       value === 'true' ? true : value === 'false' ? false : undefined
     );

@@ -4,7 +4,6 @@ import configureStore from './store/configureStore';
 import { render } from 'react-dom';
 import { Router } from 'react-router-dom';
 import Root from './containers/Root';
-import * as action from './actions';
 import history from './helpers/history';
 import * as axios from 'axios/index';
 import { getAllFlatOffers } from './actions';

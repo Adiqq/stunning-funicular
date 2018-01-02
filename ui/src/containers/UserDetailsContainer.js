@@ -5,7 +5,7 @@ import { changePassword, deleteUser } from '../actions';
 import { getUser } from '../reducers/users';
 import { ReadOnlyInputField } from '../components/ReadOnlyInputField';
 import { InputField } from '../components/InputField';
-import { minValue0, number, required } from '../helpers/validation';
+import { required } from '../helpers/validation';
 
 let UsersDetailsContainer = ({
   user,

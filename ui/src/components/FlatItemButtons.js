@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FlatItem from './FlatItem';
 import PropTypes from 'prop-types';
 
 const FlatItemButtons = ({ flat, wantBuy }) => {

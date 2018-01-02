@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlatItem from '../components/FlatItem';
-import {
-  getFlats,
-  getLastViewedFlats,
-  getVisibleFlats
-} from '../reducers/flats';
+import { getLastViewedFlats, getVisibleFlats } from '../reducers/flats';
 import { Link } from 'react-router-dom';
 import FlatPriceFilter from './FlatPriceFilter';
 import NumberOfRoomsFilter from './NumberOfRoomsFilter';
 import RoomAreaFilter from './RoomAreaFilter';
 import BalconyFilter from './BalconyFilter';
 import { getAllFlats, wantBuy } from '../actions';
-import * as action from '../actions';
 
 class FlatContainer extends Component {
   componentDidMount() {

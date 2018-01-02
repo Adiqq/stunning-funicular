@@ -9,5 +9,7 @@ export const floorConverter = floorNumber => {
       return floorNumber + ' piętro';
     case 5:
       return floorNumber + ' piętro lub wyższe';
+    default:
+      break;
   }
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { getFlat } from '../reducers/flats';
 import { connect } from 'react-redux';
 import EditApartamentForm from '../components/EditApartamentForm';

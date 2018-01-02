@@ -5,7 +5,6 @@ import * as types from '../constants/ActionTypes';
 import { normalize } from 'normalizr';
 import * as schema from '../api/schema';
 import history from '../helpers/history';
-import { get, mapValues } from 'lodash';
 import { SubmissionError } from 'redux-form';
 import { mapErrors } from '../helpers/validation';
 import uuidv4 from 'uuid/v4';

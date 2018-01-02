@@ -1,5 +1,4 @@
 import * as types from '../constants/ActionTypes';
-import { get } from 'lodash';
 
 const notificationsReducer = (
   state = {

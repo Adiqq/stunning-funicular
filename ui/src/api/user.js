@@ -26,6 +26,6 @@ export default {
     return axios.delete(`${url}/${id}`);
   },
   getAll: () => {
-    return axios.get(url);
+    return get(url);
   }
 };

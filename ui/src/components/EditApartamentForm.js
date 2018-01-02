@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
-import { get, mapValues } from 'lodash';
+import { Field, reduxForm } from 'redux-form';
+import { get } from 'lodash';
 import { floorConverter } from '../helpers/floors';
 import { mapErrors, minValue0, number, required } from '../helpers/validation';
 import { InputField } from './InputField';

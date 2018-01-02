@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MainMenuUser from './MainMenuUser';
 import { MainMenuGuest } from './MainMenuGuest';
 import { getRole } from '../reducers/user';

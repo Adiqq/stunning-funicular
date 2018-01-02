@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { register } from '../actions';
 import { connect } from 'react-redux';
@@ -9,7 +8,6 @@ import {
   hasNumber,
   minLength5,
   phoneNumber,
-  phonePrefix,
   required
 } from '../helpers/validation';
 import { PasswordField } from '../components/PasswordField';
