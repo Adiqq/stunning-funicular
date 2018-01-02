@@ -45,7 +45,7 @@ router.get('/:year/:month', passport.authenticate('basic', {session: false}), fu
                         })
                     }
                 } else{
-                    res.status(404).send('Reports not found for specified period');
+                    res.status(404).send('Brak sprzedaży dla podanego okresu.');
                 }
             }
         })

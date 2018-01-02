@@ -15,6 +15,7 @@ import UserContainer from './UserContainer';
 import UserDetailsContainer from './UserDetailsContainer';
 import './Root.css';
 import NotificationContainer from './NotificationContainer';
+import ReportsContainer from './ReportsContainer';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -40,6 +41,7 @@ const Root = ({ store }) => (
             <Route path="/picture" component={ImageUploadTest} />
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
+            <PrivateRoute path="/reports" component={ReportsContainer} />
             <PrivateRoute path="/" component={FlatContainer} />
           </Switch>
         </div>

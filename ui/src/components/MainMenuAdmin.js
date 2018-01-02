@@ -17,6 +17,9 @@ const MainMenuAdmin = ({ signout, userId, messageCounter }) => (
       <Link className="navbar-item" to="/users">
         Użytkownicy
       </Link>
+      <Link className="navbar-item" to="/reports">
+        Raporty
+      </Link>
     </div>
     <div className="navbar-end">
       <a href="javascript:void(0)" onClick={signout} className="navbar-item">

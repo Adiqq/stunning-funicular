@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cf98830-6435-4c25-b4a8-3f647e3e1242" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/routes/reports.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/api/reports.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/ReportsContainer.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change beforePath="$PROJECT_DIR$/routes/reports.js" afterPath="$PROJECT_DIR$/routes/reports.js" />
       <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/components/MainMenuAdmin.js" afterPath="$PROJECT_DIR$/../ui/src/components/MainMenuAdmin.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/containers/Root.js" afterPath="$PROJECT_DIR$/../ui/src/containers/Root.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/helpers/validation.js" afterPath="$PROJECT_DIR$/../ui/src/helpers/validation.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,8 +46,8 @@
       <file leaf-file-name="reports.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/reports.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="12" column="51" lean-forward="false" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+            <state relative-caret-position="361">
+              <caret line="47" column="77" lean-forward="false" selection-start-line="47" selection-start-column="77" selection-end-line="47" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -259,12 +263,12 @@
       <workItem from="1514673622190" duration="11589000" />
       <workItem from="1514736827786" duration="10352000" />
       <workItem from="1514755623545" duration="9634000" />
-      <workItem from="1514826758537" duration="11943000" />
+      <workItem from="1514826758537" duration="13363000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91533000" />
+    <option name="totallyTimeSpent" value="92953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1045" extended-state="6" />
@@ -702,8 +706,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/reports.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="12" column="51" lean-forward="false" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+        <state relative-caret-position="361">
+          <caret line="47" column="77" lean-forward="false" selection-start-line="47" selection-start-column="77" selection-end-line="47" selection-end-column="77" />
           <folding />
         </state>
       </provider>

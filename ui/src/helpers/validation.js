@@ -7,6 +7,10 @@ export const number = value =>
 export const minValue = min => value =>
   value && value < min ? `Minimalna wartość to ${min}` : undefined;
 export const minValue0 = minValue(0);
+export const minValue1 = minValue(1);
+export const maxValue = max => value =>
+  value && value > max ? `Maksymalna wartość to ${max}` : undefined;
+export const maxValue12 = maxValue(12);
 export const phoneNumber = value =>
   value && !/^([0-9]{9})$/i.test(value)
     ? 'Nieprawidłowy numer telefonu, musi mieć 9 cyfr'
