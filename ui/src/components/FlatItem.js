@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { floorConverter } from '../helpers/floors';
 import FlatItemButtons from './FlatItemButtons';
+import { baseUrl } from '../constants/Config';
 
 const FlatItem = ({ flat, wantBuy }) => (
   <tr>
@@ -9,7 +10,7 @@ const FlatItem = ({ flat, wantBuy }) => (
       <img
         alt={flat.Pictures.length ? flat.Pictures[0].Filename : ''}
         src={
-          'http://localhost:3001/uploads/' +
+          `${baseUrl}uploads/` +
           (flat.Pictures.length ? flat.Pictures[0].Filename : '')
         }
         width="128"
