@@ -8,6 +8,7 @@ import { FormNotification } from './FormNotification';
 import { baseUrl } from '../constants/Config';
 import { SelectField } from './SelectField';
 import { TextareaField } from './TextareaField';
+import { FileInput } from './FileInput';
 
 class EditApartamentForm extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class EditApartamentForm extends Component {
       counter: 0,
       picturesToAdd: [],
       picturesToDelete: [],
+      picturesContent: {},
       existingPictures: get(props, 'initialValues.Pictures')
         ? get(props, 'initialValues.Pictures')
         : []
@@ -34,13 +36,29 @@ class EditApartamentForm extends Component {
     let index = this.state.picturesToAdd.findIndex(
       element => element === number
     );
-    this.setState({
-      ...this.state,
-      picturesToAdd: [
-        ...this.state.picturesToAdd.slice(0, index),
-        ...this.state.picturesToAdd.slice(index + 1)
-      ]
-    });
+    let content = this.state.picturesContent[`pictures${number}`];
+    if (content) {
+      let newContent = {
+        ...this.state.picturesContent
+      };
+      delete newContent[`pictures${number}`];
+      this.setState({
+        ...this.state,
+        picturesToAdd: [
+          ...this.state.picturesToAdd.slice(0, index),
+          ...this.state.picturesToAdd.slice(index + 1)
+        ],
+        picturesContent: newContent
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        picturesToAdd: [
+          ...this.state.picturesToAdd.slice(0, index),
+          ...this.state.picturesToAdd.slice(index + 1)
+        ]
+      });
+    }
   };
 
   deleteExistingPicture = picture => {
@@ -68,8 +86,9 @@ class EditApartamentForm extends Component {
     this.append(formData, 'city', data.City);
     this.append(formData, 'street', data.Street);
     for (let i = 0; i < this.state.picturesToAdd.length; i++) {
-      let pictureArray = data[`pictures${this.state.picturesToAdd[i]}`];
-      let picture = pictureArray[0];
+      let picture = this.state.picturesContent[
+        `pictures${this.state.picturesToAdd[i]}`
+      ];
       this.append(formData, `pictures`, picture);
     }
     this.append(formData, 'numberOfRooms', data.NumberOfRooms);
@@ -87,6 +106,16 @@ class EditApartamentForm extends Component {
     this.append(formData, 'flatId', get(this.props, 'initialValues.Id'));
 
     return this.props.submitToServer(formData).catch(mapErrors);
+  };
+
+  handleFileChange = (id, file) => {
+    this.setState({
+      ...this.state,
+      picturesContent: {
+        ...this.state.picturesContent,
+        [id]: file
+      }
+    });
   };
 
   render() {
@@ -185,9 +214,10 @@ class EditApartamentForm extends Component {
                 <label className="file-label">
                   <Field
                     name={`pictures${pictureAdd}`}
-                    component="input"
-                    type="file"
-                    className="file-input"
+                    component={FileInput}
+                    onChange={(e, file) =>
+                      this.handleFileChange(`pictures${pictureAdd}`, file)
+                    }
                   />
                   <span className="file-cta">
                     <span className="file-icon">
