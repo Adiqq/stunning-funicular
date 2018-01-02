@@ -25,7 +25,7 @@ router.get('/:year/:month', passport.authenticate('basic', {session: false}), fu
                     return date >= minDate && date <= maxDate;
                 });
                 if(filtered.length) {
-                    let counter = filtered.length - 1;
+                    let counter = filtered.length;
                     let price = 0;
                     let area = 0;
                     for (let i = 0; i < filtered.length; i++) {
