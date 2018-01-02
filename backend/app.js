@@ -9,6 +9,7 @@ const sqlite3 = require('sqlite3');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const flats = require('./routes/flats');
+const reports = require('./routes/reports');
 
 const app = express();
 
@@ -175,6 +176,7 @@ app.use(function (req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/flats', flats);
+app.use('/reports', reports);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
