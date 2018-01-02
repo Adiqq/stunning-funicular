@@ -2,45 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cf98830-6435-4c25-b4a8-3f647e3e1242" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/EmailField.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/PasswordField.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/TelephoneField.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/constants/Config.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/containers/NotificationContainer.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/reducers/notifications.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/SelectField.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../ui/src/components/TextareaField.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change beforePath="$PROJECT_DIR$/routes/flats.js" afterPath="$PROJECT_DIR$/routes/flats.js" />
       <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/ApartamentsButtons.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/ApartamentsButtons.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/ApartamentsTable.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/ApartamentsTable.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/App.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/App.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/App.test.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/Content.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/Content.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/EditApartament.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/EditApartament.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/MainMenu.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/MainMenu.js" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../ui/src/actions/index.js" afterPath="$PROJECT_DIR$/../ui/src/actions/index.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/api/flatOffers.js" afterPath="$PROJECT_DIR$/../ui/src/api/flatOffers.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/api/flats.js" afterPath="$PROJECT_DIR$/../ui/src/api/flats.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/api/user.js" afterPath="$PROJECT_DIR$/../ui/src/api/user.js" />
       <change beforePath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" afterPath="$PROJECT_DIR$/../ui/src/components/EditApartamentForm.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/FlatItem.js" afterPath="$PROJECT_DIR$/../ui/src/components/FlatItem.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/FlatItemButtons.js" afterPath="$PROJECT_DIR$/../ui/src/components/FlatItemButtons.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/../ui/src/constants/ActionTypes.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/containers/FlatDetailsContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/FlatDetailsContainer.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/containers/LoginContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/LoginContainer.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/containers/RegisterContainer.js" afterPath="$PROJECT_DIR$/../ui/src/containers/RegisterContainer.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/containers/Root.js" afterPath="$PROJECT_DIR$/../ui/src/containers/Root.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/helpers/validation.js" afterPath="$PROJECT_DIR$/../ui/src/helpers/validation.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/index.js" afterPath="$PROJECT_DIR$/../ui/src/index.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/index.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/index.js" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/users.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/users.js" />
+      <change beforePath="$PROJECT_DIR$/../ui/src/reducers/notifications.js" afterPath="$PROJECT_DIR$/../ui/src/reducers/notifications.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -67,8 +36,8 @@
       <file leaf-file-name="flats.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/flats.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="174" column="24" lean-forward="true" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
+            <state relative-caret-position="285">
+              <caret line="200" column="36" lean-forward="false" selection-start-line="200" selection-start-column="36" selection-end-line="200" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -283,12 +252,12 @@
       <workItem from="1514673622190" duration="11589000" />
       <workItem from="1514736827786" duration="10352000" />
       <workItem from="1514755623545" duration="9634000" />
-      <workItem from="1514826758537" duration="6136000" />
+      <workItem from="1514826758537" duration="7561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85726000" />
+    <option name="totallyTimeSpent" value="87151000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1045" extended-state="6" />
@@ -726,8 +695,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/flats.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="174" column="24" lean-forward="true" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
+        <state relative-caret-position="285">
+          <caret line="200" column="36" lean-forward="false" selection-start-line="200" selection-start-column="36" selection-end-line="200" selection-end-column="36" />
           <folding />
         </state>
       </provider>

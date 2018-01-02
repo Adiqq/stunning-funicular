@@ -187,35 +187,24 @@ router.get('/', passport.authenticate('basic', {session: false}),
         db.each(`SELECT Id, UserId, City, Street, NumberOfRooms, RoomArea, Floor, HasBalcony, Description, Price
     FROM Flats`, [], (err, row) => {
             row.HasBalcony = !!row.HasBalcony;
-            let subCounter = 2;
-            counter += subCounter;
+            counter++;
             db.all(`SELECT Id,FlatId,Filename,Filetype FROM Pictures WHERE FlatId = $flatId`, {
                 $flatId: row.Id
             }, (err, rows) => {
                 row.Pictures = rows;
-                subCounter--;
-                counter--;
-                if (subCounter === 0) {
+                db.all(`SELECT SourceUserId,Status FROM FlatOffers WHERE FlatId = $flatId`, {
+                    $flatId: row.Id
+                }, (err, rows) => {
+                    row.Sold = rows.some(row => row.Status === 'Accepted');
+                    row.Pending = rows.some(row => row.SourceUserId === req.user.Id && row.Status === 'Pending');
+                    counter--;
                     flats.push(row);
-                }
-                if (counter === 0) {
-                    return res.send(flats);
-                }
+                    if (counter === 0) {
+                        return res.send(flats);
+                    }
+                })
             });
-            db.all(`SELECT SourceUserId,Status FROM FlatOffers WHERE FlatId = $flatId`, {
-                $flatId: row.Id
-            }, (err, rows) => {
-                row.Sold = rows.some(row => row.Status === 'Accepted');
-                row.Pending = rows.some(row => row.SourceUserId === req.user.Id && row.Status === 'Pending');
-                subCounter--;
-                counter--;
-                if (subCounter === 0) {
-                    flats.push(row);
-                }
-                if (counter === 0) {
-                    return res.send(flats);
-                }
-            })
+
         });
 
     });

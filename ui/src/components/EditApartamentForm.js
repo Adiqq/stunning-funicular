@@ -6,6 +6,8 @@ import { mapErrors, minValue0, number, required } from '../helpers/validation';
 import { InputField } from './InputField';
 import { FormNotification } from './FormNotification';
 import { baseUrl } from '../constants/Config';
+import { SelectField } from './SelectField';
+import { TextareaField } from './TextareaField';
 
 class EditApartamentForm extends Component {
   constructor(props) {
@@ -126,22 +128,20 @@ class EditApartamentForm extends Component {
               validate={[required, number, minValue0]}
             />
 
-            <div className="field">
-              <label className="label">Piętro</label>
-              <div className="control">
-                <div className="select">
-                  <Field name="Floor" component="select" validate={[required]}>
-                    <option />
-                    <option value="0">{floorConverter(0)}</option>
-                    <option value="1">{floorConverter(1)}</option>
-                    <option value="2">{floorConverter(2)}</option>
-                    <option value="3">{floorConverter(3)}</option>
-                    <option value="4">{floorConverter(4)}</option>
-                    <option value="5">{floorConverter(5)}</option>
-                  </Field>
-                </div>
-              </div>
-            </div>
+            <Field
+              name="Floor"
+              component={SelectField}
+              validate={[required]}
+              label="Piętro"
+            >
+              <option />
+              <option value="0">{floorConverter(0)}</option>
+              <option value="1">{floorConverter(1)}</option>
+              <option value="2">{floorConverter(2)}</option>
+              <option value="3">{floorConverter(3)}</option>
+              <option value="4">{floorConverter(4)}</option>
+              <option value="5">{floorConverter(5)}</option>
+            </Field>
 
             <div className="field">
               <div className="control">
@@ -157,30 +157,20 @@ class EditApartamentForm extends Component {
               </div>
             </div>
 
-            <div className="field">
-              <label className="label">Krótki opis tekstowy</label>
-              <div className="control">
-                <Field
-                  className="textarea"
-                  name="Description"
-                  component="textarea"
-                  validate={[required]}
-                />
-              </div>
-            </div>
+            <Field
+              name="Description"
+              component={TextareaField}
+              label="Krótki opis tekstowy"
+              validate={[required]}
+            />
 
-            <div className="field">
-              <label className="label">Cena</label>
-              <div className="control">
-                <Field
-                  className="input"
-                  name="Price"
-                  component="input"
-                  type="number"
-                  validate={[required, number, minValue0]}
-                />
-              </div>
-            </div>
+            <Field
+              name="Price"
+              component={InputField}
+              type="number"
+              label="Cena"
+              validate={[required, number, minValue0]}
+            />
 
             {this.state.picturesToAdd.map(pictureAdd => (
               <div key={pictureAdd} className="file">

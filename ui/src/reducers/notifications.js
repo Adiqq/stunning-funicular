@@ -25,7 +25,6 @@ const notificationsReducer = (
     case types.ACCEPT_FLAT_OFFER_ERROR:
     case types.REJECT_FLAT_OFFER_ERROR:
     case types.FLAT_BUY_OFFER_ERROR:
-    case types.ADD_FLAT_ERROR:
     case types.DELETE_USER_ERROR:
     case types.UPDATE_FLAT_ERROR:
       return {

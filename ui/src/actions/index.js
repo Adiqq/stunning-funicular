@@ -37,7 +37,7 @@ export const addFlat = flat => dispatch => {
           message: 'Dodano mieszkanie'
         })
       );
-      history.path('/');
+      history.push('/');
     })
     .catch(reason => {
       dispatch(addFlatError());
