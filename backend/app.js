@@ -21,6 +21,17 @@ const Strategy = require('passport-http').BasicStrategy;
 const saltRounds = 10;
 const bcrypt = require('bcrypt');
 
+var fs = require('fs');
+var dbDir = './db';
+var picturesDir = './public/uploads';
+
+if (!fs.existsSync(dbDir)){
+    fs.mkdirSync(dbDir);
+}
+if (!fs.existsSync(picturesDir)){
+    fs.mkdirSync(picturesDir);
+}
+
 const printError = (err) => {
     if (err) console.error(err);
 };
