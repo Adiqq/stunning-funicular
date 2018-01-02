@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6dc1dbc8-81c4-47c7-848c-10b8f71c7a56" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../backend/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../backend/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../backend/routes/reports.js" afterPath="$PROJECT_DIR$/../backend/routes/reports.js" />
+      <change beforePath="$PROJECT_DIR$/../backend/Dockerfile" afterPath="$PROJECT_DIR$/../backend/Dockerfile" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
